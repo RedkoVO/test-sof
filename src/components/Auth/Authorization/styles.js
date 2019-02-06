@@ -89,6 +89,7 @@ export default () => ({
     margin: '15px 0'
   },
   field: {
+    marginTop: '10px',
     height: '46px',
     width: '400px',
     border: 'none',

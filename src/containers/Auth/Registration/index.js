@@ -5,6 +5,8 @@ import { reduxForm } from 'redux-form'
 
 import { registrationEmail } from '../../../redux/actions/auth'
 
+import validate from './validate'
+
 import Registration from '../../../components/Auth/Registration'
 
 const FORM_NAME = 'registration'
@@ -12,7 +14,8 @@ const FORM_NAME = 'registration'
 export default compose(
   connect(),
   reduxForm({
-    form: FORM_NAME
+    form: FORM_NAME,
+    validate
   }),
   withHandlers({
     onSubmit: ({ handleSubmit, dispatch }) =>
