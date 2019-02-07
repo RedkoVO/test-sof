@@ -1,28 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import withStyles from '@material-ui/core/styles/withStyles'
 
-class ConfirmEmail extends Component {
-  componentDidMount() {
-    this.timer = setTimeout(() => {
-      this.props.history.push('/en/web/')
-    }, 5000)
-  }
+import styles from './styles'
 
-  componentWillUnmount() {
-    if(this.timer){
-      clearTimeout(this.timer);
-    }
-  }
+const ConfirmEmail = ({ classes }) => (
+  <div className={classes.root}>
+    Welcome to Cryptaur Games!
+    <br />
+    Email was confirm!
+    <Link to="/en/web" className={classes.link}>Home page</Link>
+  </div>
+)
 
-  render() {
-    return (
-      <div className="container">
-        <div className="register-in-propgress-message">
-          Welcome to Cryptaur Games!<br />
-          Email was confirm!
-        </div>
-      </div>
-    )
-  }
+ConfirmEmail.propTypes = {
+  classes: PropTypes.object
 }
 
-export default ConfirmEmail
+export default withStyles(styles)(ConfirmEmail)

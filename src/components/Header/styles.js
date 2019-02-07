@@ -13,5 +13,11 @@ export default theme => ({
       flexDirection: 'column',
       alignItems: 'center'
     }
+  },
+  logout: {
+    cursor: 'pointer',
+    position: 'absolute',
+    right: '40px',
+    top: '45px'
   }
 })

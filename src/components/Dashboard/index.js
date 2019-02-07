@@ -24,10 +24,18 @@ const Dashboard = ({
       >
         <TabList className={classes.tabList}>
           <Tab className={classes.tab}>София предсказывает будущее</Tab>
-          <Tab className={classes.tab}>София создает рецепт молодости и бессмертия</Tab>
-          <Tab className={classes.tab}>София создает рецепт молодости и бессмертия</Tab>
-          <Tab className={classes.tab}>София создает рецепт молодости и бессмертия</Tab>
-          <Tab className={classes.tab}>София создает рецепт молодости и бессмертия</Tab>
+          <Tab className={classes.tab}>
+            София создает рецепт молодости и бессмертия
+          </Tab>
+          <Tab className={classes.tab}>
+            София создает рецепт молодости и бессмертия
+          </Tab>
+          <Tab className={classes.tab}>
+            София создает рецепт молодости и бессмертия
+          </Tab>
+          <Tab className={classes.tab}>
+            София создает рецепт молодости и бессмертия
+          </Tab>
         </TabList>
         <TabPanel className={classes.tabPanel}>
           {answers1.map(item => (

@@ -1,14 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { Form, Field } from 'redux-form'
 
-import InputField from '../../../../App/components/InputField'
+import InputField from '../../../../../App/components/InputField'
 
 import styles from './styles'
 
-const Step1 = ({ classes, onSubmit }) => (
+const Step1 = ({ classes, onSubmit, handleAuthModal, isCheckEmail }) => (
   <div className={classes.root}>
     <Form className={classes.registrStep1} onSubmit={onSubmit}>
       <h1 className={classes.step1Title}>Registration</h1>
@@ -25,10 +24,14 @@ const Step1 = ({ classes, onSubmit }) => (
         placeholder="Email"
       />
 
+      {isCheckEmail && (
+        <div className={classes.checkEmail}>Check your email</div>
+      )}
+
       <div>
-        <Link to={'/en/web/login'} className={classes.step1BtnBack}>
+        <div className={classes.step1BtnBack} onClick={() => handleAuthModal()}>
           Login
-        </Link>
+        </div>
         <button type="submit" className={classes.step1BtnsFinish}>
           Registration!
         </button>
@@ -39,7 +42,9 @@ const Step1 = ({ classes, onSubmit }) => (
 
 Step1.propTypes = {
   classNamees: PropTypes.object,
-  onSubmit: PropTypes.func
+  handleAuthModal: PropTypes.func,
+  onSubmit: PropTypes.func,
+  isCheckEmail: PropTypes.bool
 }
 
 export default withStyles(styles)(Step1)

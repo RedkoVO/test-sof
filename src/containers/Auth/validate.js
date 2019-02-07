@@ -5,6 +5,10 @@ const validate = values => {
     errors.email = 'error.required'
   }
 
+  if (!values.pass) {
+    errors.pass = 'error.required'
+  }
+
   return errors
 }
 

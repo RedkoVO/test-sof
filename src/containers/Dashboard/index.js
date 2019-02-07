@@ -1,5 +1,5 @@
 import compose from 'recompose/compose'
-import { withProps, lifecycle, pure } from 'recompose'
+import { withProps, pure } from 'recompose'
 
 import Dashboard from '../../components/Dashboard'
 
@@ -486,14 +486,5 @@ const answers5 = [
 
 export default compose(
   withProps(() => ({ answers1, answers2, answers3, answers4, answers5 })),
-  lifecycle({
-    componentDidMount() {
-      const { isAuth, history } = this.props
-
-      if (!isAuth) {
-        history.push('/en/web/login')
-      }
-    }
-  }),
   pure
 )(Dashboard)

@@ -7,11 +7,20 @@ export default () => ({
     justifyContent: 'center'
   },
   registrStep1: {
+    position: 'fixed',
+    width: 'fit-content',
+    height: 'fit-content',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    margin: 'auto',
+    zIndex: 9,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(255,255,255,.38)',
+    backgroundColor: 'rgb(243, 243, 243)',
     padding: '65px',
     borderRadius: '23px',
     boxShadow: '0px 10px 20px 0px rgba(0,0,0,0.1)'
@@ -50,6 +59,8 @@ export default () => ({
     cursor: 'pointer'
   },
   step1BtnBack: {
+    display: 'inline-block',
+    textAlign: 'center',
     fontSize: '20px',
     fontWeight: 700,
     border: 'none',
@@ -115,5 +126,9 @@ export default () => ({
       opacity: '0.5',
       cursor: 'default'
     }
+  },
+  checkEmail: {
+    color: 'green',
+    paddingTop: '10px'
   }
 })

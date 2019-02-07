@@ -1,7 +1,12 @@
 import axios from 'axios'
 import qs from 'qs'
 
-import { CHECK_AUTH, LOGIN_USER, REGISTRATION_USER } from './types'
+import {
+  CHECK_AUTH,
+  LOGIN_USER,
+  REGISTRATION_USER,
+  CONFIRM_REGISTRATION
+} from './types'
 import gC from '../../constants'
 
 /* CHECK AUTH */
@@ -16,7 +21,7 @@ export const checkAuth = () => {
         'Content-Type': 'application/x-www-form-urlencoded',
         token: token ? token : ''
       },
-      url: `${gC.API_URL}/checkauth`
+      url: `${gC.API_URL}/req/checkauth`
     })
       .then(response => {
         dispatch(createCheckAuthSuccess(response.data))
@@ -33,10 +38,8 @@ export const createCheckAuthSuccess = data => {
     payload: {
       isAuth: data.isAuth,
       success: data.success,
-      balance: data.balance,
       userId: data.user_id,
-      email: data.email,
-      gotNewBonusEvent: data.got_new_bonus_event
+      email: data.email
     }
   }
 }
@@ -52,7 +55,7 @@ export const loginUser = data => {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       data: qs.stringify(data),
-      url: `${gC.API_URL}/auth`
+      url: `${gC.API_URL}/req/auth`
     })
       .then(response => {
         dispatch(createLoginUserSuccess(response.data))
@@ -91,7 +94,7 @@ export const registrationEmail = data => {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       data: qs.stringify(data),
-      url: `${gC.API_URL}/regemail`
+      url: `${gC.API_URL}/req/regemail`
     })
       .then(response => {
         dispatch(createRegistrationEmailSuccess(response.data))
@@ -107,6 +110,39 @@ export const registrationEmail = data => {
 export const createRegistrationEmailSuccess = data => {
   return {
     type: REGISTRATION_USER,
+    payload: {
+      success: data.success
+    }
+  }
+}
+/* ********** */
+
+/* CONFIRM REGISTRATION */
+export const confirmRegistration = data => {
+  return dispatch => {
+    return axios({
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data: qs.stringify(data),
+      url: `${gC.API_URL}/req/confirm_email`
+    })
+      .then(response => {
+        dispatch(createConfirmRegistrationSuccess(response.data))
+
+        return response.data
+      })
+      .catch(error => {
+        console.log('CONFIRM_REGISTRATION error', error)
+      })
+  }
+}
+
+export const createConfirmRegistrationSuccess = data => {
+  return {
+    type: CONFIRM_REGISTRATION,
     payload: {
       success: data.success
     }

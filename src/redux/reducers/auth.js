@@ -10,10 +10,8 @@ const auth = (state = {}, action) => {
         checkAuth: {
           isAuth: payload.isAuth,
           success: payload.success,
-          balance: payload.balance,
           userId: payload.userId,
-          email: payload.email,
-          gotNewBonusEvent: payload.gotNewBonusEvent
+          email: payload.email
         }
       }
     case LOGIN_USER:
