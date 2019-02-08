@@ -56,7 +56,11 @@ export default () => ({
     borderRadius: '23px',
     paddingLeft: '25px',
     boxSizing: 'border-box',
-    backgroundColor: 'rgba(	255, 255, 255, 0.61)'
+    backgroundColor: 'rgba(	255, 255, 255, 0.61)',
+
+    '&.input-error': {
+      border: '1px solid red'
+    }
   },
   step1BtnBack: {
     display: 'inline-block',

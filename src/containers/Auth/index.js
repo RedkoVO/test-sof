@@ -1,9 +1,13 @@
 import compose from 'recompose/compose'
 import { connect } from 'react-redux'
 import { withState, withHandlers, pure } from 'recompose'
-import { reduxForm } from 'redux-form'
+import { reduxForm, reset } from 'redux-form'
 
-import { loginUser, registrationEmail, checkAuth } from '../../redux/actions/auth'
+import {
+  loginUser,
+  registrationEmail,
+  checkAuth
+} from '../../redux/actions/auth'
 
 import validate from './validate'
 
@@ -19,9 +23,11 @@ export default compose(
   }),
   withState('isSignin', 'setIsSignin', true),
   withState('isCheckEmail', 'setIsCheckEmail', false),
+  withState('isRegistrationPressed', 'setRegistrationPressed', false),
   withHandlers({
-    handleAuthModal: ({ isSignin, setIsSignin }) => () => {
+    handleAuthModal: ({ isSignin, setIsSignin, dispatch }) => () => {
       setIsSignin(!isSignin)
+      dispatch(reset('authirization'))
     },
 
     onSubmit: ({
@@ -30,7 +36,9 @@ export default compose(
       isCheckEmail,
       setIsCheckEmail,
       dispatch,
-      isSignin
+      isSignin,
+      setRegistrationPressed,
+      isRegistrationPressed
     }) =>
       handleSubmit(variables => {
         if (isSignin) {
@@ -49,17 +57,23 @@ export default compose(
             })
             .catch(err => console.log('Error: Auth', err))
         } else {
-          const data = {
-            email: variables.email,
-            recaptcha: '111111111111'
+          if (!isRegistrationPressed) {
+            const data = {
+              email: variables.email,
+              recaptcha: '111111111111'
+            }
+
+            setRegistrationPressed(true)
+
+            dispatch(registrationEmail(data))
+              .then(res => {
+                if (res && res.success) {
+                  setIsCheckEmail(!isCheckEmail)
+                  setRegistrationPressed(false)
+                }
+              })
+              .catch(err => console.log('Error: Auth', err))
           }
-          dispatch(registrationEmail(data))
-            .then(res => {
-              if (res && res.success) {
-                setIsCheckEmail(!isCheckEmail)
-              }
-            })
-            .catch(err => console.log('Error: Auth', err))
         }
       })
   }),

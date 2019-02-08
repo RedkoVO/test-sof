@@ -66,7 +66,11 @@ export default () => ({
     borderRadius: '30px',
     border: 'none',
     cursor: 'pointer',
+    transition: 'background-color 0.1s ease-out',
 
+    '&:hover': {
+      backgroundColor: '#0092de'
+    },
     '&:focus': {
       outline: 'none'
     }

@@ -46,17 +46,11 @@ export default () => ({
     borderRadius: '23px',
     paddingLeft: '25px',
     boxSizing: 'border-box',
-    backgroundColor: 'rgba(	255, 255, 255, 0.61)'
-  },
-  wrKey: {
-    display: 'flex',
-    alignItems: 'center'
-  },
-  refresh: {
-    width: '20px',
-    height: '20px',
-    marginLeft: '10px',
-    cursor: 'pointer'
+    backgroundColor: 'rgba(	255, 255, 255, 0.61)',
+
+    '&.input-error': {
+      border: '1px solid red'
+    }
   },
   step1BtnBack: {
     display: 'inline-block',
@@ -89,7 +83,11 @@ export default () => ({
     width: '245px',
     borderRadius: '23px',
     marginTop: '50px',
-    cursor: 'pointer'
+    cursor: 'pointer',
+
+    '&.disabled': {
+      opacity: 0.3
+    }
   },
   step1BtnsGeneration: {
     fontSize: '20px',

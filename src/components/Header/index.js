@@ -7,12 +7,20 @@ import Authorization from '../../containers/Auth'
 
 import styles from './styles'
 
-const HeaderMain = ({ classes, isShow, handleCloseModal, handleLogout }) => (
+const Header = ({
+  classes,
+  isAuth,
+  isShow,
+  handleCloseModal,
+  handleLogout
+}) => (
   <React.Fragment>
     <header className={classes.root}>
-    <div className={classes.logout} onClick={() => handleLogout()}>
-      Logout
-    </div>
+      {isAuth && (
+        <div className={classes.logout} onClick={() => handleLogout()}>
+          Logout
+        </div>
+      )}
       <UserBlock />
     </header>
 
@@ -20,11 +28,12 @@ const HeaderMain = ({ classes, isShow, handleCloseModal, handleLogout }) => (
   </React.Fragment>
 )
 
-HeaderMain.propTypes = {
+Header.propTypes = {
   classes: PropTypes.object,
   isShow: PropTypes.bool,
+  isAuth: PropTypes.bool,
   handleCloseModal: PropTypes.func,
   handleLogout: PropTypes.func
 }
 
-export default withStyles(styles)(HeaderMain)
+export default withStyles(styles)(Header)

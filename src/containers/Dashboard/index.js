@@ -1,5 +1,5 @@
 import compose from 'recompose/compose'
-import { withProps, pure } from 'recompose'
+import { withProps, pure, withHandlers, withState } from 'recompose'
 
 import Dashboard from '../../components/Dashboard'
 
@@ -9,6 +9,7 @@ const answers1 = [
     title: '1 вопрос',
     oldPrice: '$11,99',
     price: '$4,99',
+    bundle: '1_answer',
     items: [
       {
         id: 1,
@@ -36,6 +37,7 @@ const answers1 = [
     title: '2 вопроса',
     oldPrice: '$30,99',
     price: '$11,99',
+    bundle: '2_answers',
     items: [
       {
         id: 1,
@@ -63,6 +65,7 @@ const answers1 = [
     title: '7 вопросов',
     oldPrice: '$80,99',
     price: '$30,99',
+    bundle: '3_answers',
     items: [
       {
         id: 1,
@@ -90,6 +93,7 @@ const answers1 = [
     title: 'Сонник от Софии',
     oldPrice: '$2,99',
     price: '$0,99',
+    bundle: 'sonnik_ot_sofii',
     items: [
       {
         id: 1,
@@ -105,6 +109,7 @@ const answers2 = [
     title: '1 вопрос',
     oldPrice: '$11,99',
     price: '$4,99',
+    bundle: '1_answer',
     items: [
       {
         id: 1,
@@ -132,6 +137,7 @@ const answers2 = [
     title: '2 вопроса',
     oldPrice: '$30,99',
     price: '$11,99',
+    bundle: '2_answers',
     items: [
       {
         id: 1,
@@ -159,6 +165,7 @@ const answers2 = [
     title: '7 вопросов',
     oldPrice: '$80,99',
     price: '$30,99',
+    bundle: '3_answers',
     items: [
       {
         id: 1,
@@ -186,6 +193,7 @@ const answers2 = [
     title: 'Сонник от Софии',
     oldPrice: '$2,99',
     price: '$0,99',
+    bundle: 'sonnik_ot_sofii',
     items: [
       {
         id: 1,
@@ -201,6 +209,7 @@ const answers3 = [
     title: '1 вопрос',
     oldPrice: '$11,99',
     price: '$4,99',
+    bundle: '1_answer',
     items: [
       {
         id: 1,
@@ -228,6 +237,7 @@ const answers3 = [
     title: '2 вопроса',
     oldPrice: '$30,99',
     price: '$11,99',
+    bundle: '2_answers',
     items: [
       {
         id: 1,
@@ -255,6 +265,7 @@ const answers3 = [
     title: '7 вопросов',
     oldPrice: '$80,99',
     price: '$30,99',
+    bundle: '3_answers',
     items: [
       {
         id: 1,
@@ -282,6 +293,7 @@ const answers3 = [
     title: 'Сонник от Софии',
     oldPrice: '$2,99',
     price: '$0,99',
+    bundle: 'sonnik_ot_sofii',
     items: [
       {
         id: 1,
@@ -297,6 +309,7 @@ const answers4 = [
     title: '1 вопрос',
     oldPrice: '$11,99',
     price: '$4,99',
+    bundle: '1_answer',
     items: [
       {
         id: 1,
@@ -324,6 +337,7 @@ const answers4 = [
     title: '2 вопроса',
     oldPrice: '$30,99',
     price: '$11,99',
+    bundle: '2_answers',
     items: [
       {
         id: 1,
@@ -351,6 +365,7 @@ const answers4 = [
     title: '7 вопросов',
     oldPrice: '$80,99',
     price: '$30,99',
+    bundle: '3_answers',
     items: [
       {
         id: 1,
@@ -378,6 +393,7 @@ const answers4 = [
     title: 'Сонник от Софии',
     oldPrice: '$2,99',
     price: '$0,99',
+    bundle: 'sonnik_ot_sofii',
     items: [
       {
         id: 1,
@@ -393,6 +409,7 @@ const answers5 = [
     title: '1 вопрос',
     oldPrice: '$11,99',
     price: '$4,99',
+    bundle: '1_answer',
     items: [
       {
         id: 1,
@@ -420,6 +437,7 @@ const answers5 = [
     title: '2 вопроса',
     oldPrice: '$30,99',
     price: '$11,99',
+    bundle: '2_answers',
     items: [
       {
         id: 1,
@@ -447,6 +465,7 @@ const answers5 = [
     title: '7 вопросов',
     oldPrice: '$80,99',
     price: '$30,99',
+    bundle: '3_answers',
     items: [
       {
         id: 1,
@@ -474,6 +493,7 @@ const answers5 = [
     title: 'Сонник от Софии',
     oldPrice: '$2,99',
     price: '$0,99',
+    bundle: 'sonnik_ot_sofii',
     items: [
       {
         id: 1,
@@ -485,6 +505,22 @@ const answers5 = [
 ]
 
 export default compose(
+  withState('isShowPayment', 'setShowPayment', false),
+  withState('choosedAnswer', 'setChoosedAnswer', {}),
+  withHandlers({
+    handlerPaymentPopup: ({
+      setShowPayment,
+      isShowPayment,
+      setChoosedAnswer
+    }) => answer => {
+      setShowPayment(!isShowPayment)
+      setChoosedAnswer(answer)
+    },
+
+    handlerPaymentClose: ({ setShowPayment }) => () => {
+      setShowPayment(false)
+    }
+  }),
   withProps(() => ({ answers1, answers2, answers3, answers4, answers5 })),
   pure
 )(Dashboard)

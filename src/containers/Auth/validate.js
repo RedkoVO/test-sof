@@ -3,6 +3,8 @@ const validate = values => {
 
   if (!values.email) {
     errors.email = 'error.required'
+  } else if (!/.+@.+\..+/i.test(values.email)) {
+    errors.email = 'error.email'
   }
 
   if (!values.pass) {

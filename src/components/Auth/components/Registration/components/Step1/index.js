@@ -2,12 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { Form, Field } from 'redux-form'
+import cn from 'classnames'
 
 import InputField from '../../../../../App/components/InputField'
 
 import styles from './styles'
 
-const Step1 = ({ classes, onSubmit, handleAuthModal, isCheckEmail }) => (
+const Step1 = ({
+  classes,
+  onSubmit,
+  handleAuthModal,
+  isCheckEmail,
+  isRegistrationPressed
+}) => (
   <div className={classes.root}>
     <Form className={classes.registrStep1} onSubmit={onSubmit}>
       <h1 className={classes.step1Title}>Registration</h1>
@@ -18,7 +25,7 @@ const Step1 = ({ classes, onSubmit, handleAuthModal, isCheckEmail }) => (
       <Field
         id="email"
         name="email"
-        type="email"
+        type="text"
         className={classes.field}
         component={InputField}
         placeholder="Email"
@@ -32,7 +39,12 @@ const Step1 = ({ classes, onSubmit, handleAuthModal, isCheckEmail }) => (
         <div className={classes.step1BtnBack} onClick={() => handleAuthModal()}>
           Login
         </div>
-        <button type="submit" className={classes.step1BtnsFinish}>
+        <button
+          type="submit"
+          className={cn(classes.step1BtnsFinish, {
+            disabled: isRegistrationPressed
+          })}
+        >
           Registration!
         </button>
       </div>
@@ -44,7 +56,8 @@ Step1.propTypes = {
   classNamees: PropTypes.object,
   handleAuthModal: PropTypes.func,
   onSubmit: PropTypes.func,
-  isCheckEmail: PropTypes.bool
+  isCheckEmail: PropTypes.bool,
+  isRegistrationPressed: PropTypes.bool
 }
 
 export default withStyles(styles)(Step1)

@@ -11,8 +11,9 @@ const Authorization = ({
   classes,
   onSubmit,
   isSignin,
-  handleCloseModal,
-  handleAuthModal
+  isCheckEmail,
+  handleAuthModal,
+  isRegistrationPressed
 }) => (
   <div className={classes.root}>
     <div className={classes.authOverlay} />
@@ -20,7 +21,12 @@ const Authorization = ({
     {isSignin ? (
       <SignIn onSubmit={onSubmit} handleAuthModal={handleAuthModal} />
     ) : (
-      <Registration onSubmit={onSubmit} handleAuthModal={handleAuthModal} />
+      <Registration
+        onSubmit={onSubmit}
+        handleAuthModal={handleAuthModal}
+        isCheckEmail={isCheckEmail}
+        isRegistrationPressed={isRegistrationPressed}
+      />
     )}
   </div>
 )
@@ -28,7 +34,8 @@ const Authorization = ({
 Authorization.propTypes = {
   classNamees: PropTypes.object,
   handleAuthModal: PropTypes.func,
-  handleCloseModal: PropTypes.func,
+  isCheckEmail: PropTypes.bool,
+  isRegistrationPressed: PropTypes.bool,
   onSubmit: PropTypes.func,
   isSignin: PropTypes.bool
 }
