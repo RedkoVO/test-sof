@@ -23,8 +23,7 @@ export default theme => ({
       width: '500px',
       paddingTop: '20px',
       height: '92px',
-      paddingBottom: '20px',
-      backgroundColor: '#f5f5f5'
+      paddingBottom: '20px'
     },
     [theme.breakpoints.down('sm')]: {
       minWidth: '100%',
