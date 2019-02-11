@@ -5,8 +5,9 @@ export default () => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '1024px',
-    margin: '0 auto'
+    width: '100%',
+    margin: '0 auto',
+    background: '#f2f1f2'
   },
   tabs: {
     width: '100%'
@@ -15,13 +16,15 @@ export default () => ({
     margin: 0,
     padding: '40px 0 40px 0',
     display: 'flex',
-    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
     listStyleType: 'none'
   },
   tab: {
     display: 'flex',
     alignItems: 'center',
     width: '190px',
+    margin: '5px',
     padding: '8px',
     color: '#04b1ff',
     fontSize: '14px',
@@ -54,7 +57,8 @@ export default () => ({
   },
   selectedPanel: {
     display: 'flex',
-    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
     opacity: 1,
     marginBottom: '100px',
     animation: 'fade-and-slide-in 1200ms ease-in'

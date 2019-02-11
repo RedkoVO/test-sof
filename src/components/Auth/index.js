@@ -5,6 +5,8 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import SignIn from './components/SignIn'
 import Registration from './components/Registration'
 
+import Logo from '../../assets/images/auth-logo.jpg'
+
 import styles from './styles'
 
 const Authorization = ({
@@ -18,16 +20,25 @@ const Authorization = ({
   <div className={classes.root}>
     <div className={classes.authOverlay} />
 
-    {isSignin ? (
-      <SignIn onSubmit={onSubmit} handleAuthModal={handleAuthModal} />
-    ) : (
-      <Registration
-        onSubmit={onSubmit}
-        handleAuthModal={handleAuthModal}
-        isCheckEmail={isCheckEmail}
-        isRegistrationPressed={isRegistrationPressed}
-      />
-    )}
+    <div className={classes.wrAuth}>
+      <div className={classes.wrAuthHeader}>
+        <img src={Logo} alt="" />
+        <div className={classes.title}>
+          Добро пожаловать в ваш личный кабинет проекта SophiaIQ
+        </div>
+      </div>
+
+      {isSignin ? (
+        <SignIn onSubmit={onSubmit} handleAuthModal={handleAuthModal} />
+      ) : (
+        <Registration
+          onSubmit={onSubmit}
+          handleAuthModal={handleAuthModal}
+          isCheckEmail={isCheckEmail}
+          isRegistrationPressed={isRegistrationPressed}
+        />
+      )}
+    </div>
   </div>
 )
 

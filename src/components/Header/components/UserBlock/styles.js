@@ -18,17 +18,6 @@ export default theme => ({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     width: '100%',
-
-    [theme.breakpoints.down('md')]: {
-      width: '500px',
-      paddingTop: '20px',
-      height: '92px',
-      paddingBottom: '20px'
-    },
-    [theme.breakpoints.down('sm')]: {
-      minWidth: '100%',
-      margin: 0
-    }
   },
   userBlock: {
     display: 'flex',

@@ -1,4 +1,4 @@
-export default () => ({
+export default theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -13,6 +13,10 @@ export default () => ({
 
     '& svg': {
       cursor: 'pointer'
+    },
+
+    [theme.breakpoints.down('md')]: {
+      width: 'inherit'
     }
   },
   copyright: {

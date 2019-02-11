@@ -1,7 +1,11 @@
-export default () => ({
+export default theme => ({
   wrContent: {
     width: '220px',
-    textAlign: 'center'
+    textAlign: 'center',
+
+    [theme.breakpoints.down('md')]: {
+      margin: '5px',
+    }
   },
   headerContent: {
     padding: '20px 0',
@@ -17,7 +21,7 @@ export default () => ({
   },
   title: {
     fontSize: '18px',
-    fontFamily: 'ubBold'
+    fontWeight: 900
   },
   oldPrice: {
     color: '#ff7d7d',
@@ -25,7 +29,7 @@ export default () => ({
   },
   price: {
     fontSize: '17px',
-    fontFamily: 'ubBold'
+    fontWeight: 900
   },
   content: {
     display: 'flex',
@@ -46,7 +50,7 @@ export default () => ({
   item: {
     padding: '15px 18px',
     fontSize: '14px',
-    fontFamily: 'ubLight'
+    fontWeight: 100
   },
   underline: {
     height: '1px',
@@ -73,6 +77,9 @@ export default () => ({
     },
     '&:focus': {
       outline: 'none'
+    },
+    '&:active': {
+      backgroundColor: '#0483c5'
     }
   }
 })

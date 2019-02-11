@@ -8,48 +8,49 @@ import InputField from '../../../App/components/InputField'
 
 import styles from './styles'
 
-const SignIn = ({ classes, onSubmit, handleAuthModal }) => (
+const SignIn = ({ classes, onSubmit, handleAuthModal, isLoginPressed }) => (
   <div className={classes.root}>
     <div className={classes.containerRegistrat}>
-      <div className={classes.containerRegistratStep1}>
-        <Form className={classes.registrStep1} onSubmit={onSubmit}>
-          <h1 className={classes.step1Title}>Login</h1>
-          <Field
-            id="email"
-            name="email"
-            type="email"
-            className={classes.field}
-            component={InputField}
-            placeholder="Email"
-          />
+      <Form className={classes.registrStep1} onSubmit={onSubmit}>
+        <h1 className={classes.step1Title}>
+          Введите логин и пароль от вашего кабинета SophiaIQ. Если вы еще не
+          зарегистрированы, перейдите по кнопке «Регистрация»
+        </h1>
+        <Field
+          id="email"
+          name="email"
+          type="email"
+          className={classes.field}
+          component={InputField}
+          placeholder="Email"
+        />
 
-          <Field
-            id="pass"
-            name="pass"
-            type="password"
-            className={classes.field}
-            component={InputField}
-            placeholder="Password"
-          />
+        <Field
+          id="pass"
+          name="pass"
+          type="password"
+          className={classes.field}
+          component={InputField}
+          placeholder="Пароль"
+        />
 
-          <div>
-            <div
-              className={classes.step1BtnBack}
-              onClick={() => handleAuthModal()}
-            >
-              Registration
-            </div>
-            <button
-              type="submit"
-              className={cn(classes.step1BtnsRegister, {
-                disabled: false
-              })}
-            >
-              Login!
-            </button>
+        <div>
+          <div
+            className={classes.step1BtnBack}
+            onClick={() => handleAuthModal()}
+          >
+            Регистрация
           </div>
-        </Form>
-      </div>
+          <button
+            type="submit"
+            className={cn(classes.step1BtnsRegister, {
+              disabled: isLoginPressed
+            })}
+          >
+            Авторизация!
+          </button>
+        </div>
+      </Form>
     </div>
   </div>
 )
@@ -57,7 +58,8 @@ const SignIn = ({ classes, onSubmit, handleAuthModal }) => (
 SignIn.propTypes = {
   classNamees: PropTypes.object,
   handleAuthModal: PropTypes.func,
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
+  isLoginPressed: PropTypes.bool
 }
 
 export default withStyles(styles)(SignIn)

@@ -7,10 +7,10 @@ import styles from './styles'
 
 const ConfirmEmail = ({ classes }) => (
   <div className={classes.root}>
-    Welcome to Cryptaur Games!
+    Добро пожаловать в ваш личный кабинет проекта SophiaIQ!
     <br />
-    Email was confirm!
-    <Link to="/en/web" className={classes.link}>Home page</Link>
+    Email был подтвержден!
+    <Link to="/en/web" className={classes.link}>Главная</Link>
   </div>
 )
 

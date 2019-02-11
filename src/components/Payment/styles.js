@@ -46,11 +46,11 @@ export default () => ({
   title: {
     paddingBottom: '15px',
     fontSize: '18px',
-    fontFamily: 'ubBold'
+    fontWeight: 900
   },
   content: {
     fontSize: '13px',
-    fontFamily: 'ubLight'
+    fontWeight: 100
   },
   button: {
     width: '170px',
@@ -74,7 +74,7 @@ export default () => ({
   price: {
     paddingTop: '20px',
     fontSize: '17px',
-    fontFamily: 'ubBold'
+    fontWeight: 900
   },
   wrIframe: {
     width: '500px',

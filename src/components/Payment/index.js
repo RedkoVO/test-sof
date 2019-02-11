@@ -34,7 +34,7 @@ const Payment = ({
             className={classes.button}
             onClick={() => handlerPaymentSubmit()}
           >
-            OK
+            Получить ответ
           </div>
         </React.Fragment>
       )}

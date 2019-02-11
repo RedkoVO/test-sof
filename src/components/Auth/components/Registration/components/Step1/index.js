@@ -17,11 +17,11 @@ const Step1 = ({
 }) => (
   <div className={classes.root}>
     <Form className={classes.registrStep1} onSubmit={onSubmit}>
-      <h1 className={classes.step1Title}>Registration</h1>
-
-      <label htmlFor="password" className={classes.step1Label}>
-        Email
-      </label>
+      <h1 className={classes.step1Title}>
+        Введите ваш имейл для регистрации. Если вы уже зарегистрированы в
+        SophiaIQ, то перейдите по кнопке "Авторизация"
+      </h1>
+      
       <Field
         id="email"
         name="email"
@@ -32,12 +32,12 @@ const Step1 = ({
       />
 
       {isCheckEmail && (
-        <div className={classes.checkEmail}>Check your email</div>
+        <div className={classes.checkEmail}>Проверте свой email</div>
       )}
 
       <div>
         <div className={classes.step1BtnBack} onClick={() => handleAuthModal()}>
-          Login
+          Авторизация
         </div>
         <button
           type="submit"
@@ -45,7 +45,7 @@ const Step1 = ({
             disabled: isRegistrationPressed
           })}
         >
-          Registration!
+          Регистрация!
         </button>
       </div>
     </Form>

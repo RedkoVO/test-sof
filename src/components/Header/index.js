@@ -18,13 +18,13 @@ const Header = ({
     <header className={classes.root}>
       {isAuth && (
         <div className={classes.logout} onClick={() => handleLogout()}>
-          Logout
+          Выйти
         </div>
       )}
       <UserBlock />
     </header>
 
-    {isShow && <Authorization handleCloseModal={handleCloseModal} />}
+    {/* {isShow && <Authorization handleCloseModal={handleCloseModal} />} */}
   </React.Fragment>
 )
 

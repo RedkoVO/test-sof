@@ -1,6 +1,8 @@
 import compose from 'recompose/compose'
 import { withProps, pure, withHandlers, withState } from 'recompose'
 
+import withDeviceTarget from '../../hocs/withDeviceTarget'
+
 import Dashboard from '../../components/Dashboard'
 
 const answers1 = [
@@ -448,9 +450,16 @@ const answers5 = [
 ]
 
 export default compose(
+  withDeviceTarget,
   withState('isShowPayment', 'setShowPayment', false),
   withState('choosedAnswer', 'setChoosedAnswer', {}),
+  withState('selectedTabIndex', 'setTabIndex', 0),
   withHandlers({
+    selectTab: ({ setTabIndex }) => tabIndex => {
+      console.log('tabIndex', tabIndex)
+      setTabIndex(tabIndex)
+    },
+
     handlerPaymentPopup: ({
       setShowPayment,
       isShowPayment,
