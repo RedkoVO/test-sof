@@ -18,7 +18,8 @@ export default () => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    listStyleType: 'none'
+    listStyleType: 'none',
+    display: 'none'
   },
   tab: {
     display: 'flex',

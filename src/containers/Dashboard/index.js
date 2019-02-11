@@ -454,9 +454,11 @@ export default compose(
   withState('isShowPayment', 'setShowPayment', false),
   withState('choosedAnswer', 'setChoosedAnswer', {}),
   withState('selectedTabIndex', 'setTabIndex', 0),
+  withState('isOpenMenu', 'setOpenMenu', false),
   withHandlers({
-    selectTab: ({ setTabIndex }) => tabIndex => {
+    selectTab: ({ setTabIndex, setOpenMenu }) => tabIndex => {
       setTabIndex(tabIndex)
+      setOpenMenu(false)
     },
 
     handlerPaymentPopup: ({

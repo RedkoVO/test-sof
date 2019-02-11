@@ -39,7 +39,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* General sidebar styles */
 .bm-menu {
-  background: #373a47;
+  /* background: #373a47; */
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
 }
@@ -58,9 +58,30 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Individual item */
 .bm-item {
   display: inline-block;
+  width: 190px;
+  color: #04b1ff;
+  margin: 5px;
+  border: 2px solid #04b1ff;
+  cursor: pointer;
+  display: flex;
+  padding: 8px;
+  font-size: 14px;
+  text-align: center;
+  align-items: center;
+  border-radius: 30px;
+}
+.bm-item:focus {
+  outline: none;
 }
 
 /* Styling of overlay */
 .bm-overlay {
-  background: rgba(0, 0, 0, 0.3);
+  background: none !important;
+}
+
+.bm-burger-button button:focus {
+  outline: none;
+}
+.bm-cross-button button:focus {
+  outline: none;
 }

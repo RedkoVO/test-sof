@@ -23,24 +23,31 @@ const Dashboard = ({
   handlerPaymentClose,
   selectTab,
   selectedTabIndex,
+  isOpenMenu,
   isAuth
 }) => {
   return (
     <main>
       {isAuth && (
-        <Menu pageWrapId={'page-wrap'} width={'280px'}>
-        <div className="menu-item" onClick={() => selectTab(0)}>
-          Home
-        </div>
-        <div className="menu-item" onClick={() => selectTab(1)}>
-          About
-        </div>
-        <div className="menu-item" onClick={() => selectTab(2)}>
-          Contact
-        </div>
-      </Menu>
+        <Menu pageWrapId={'page-wrap'} width={'280px'} isOpen={isOpenMenu}>
+          <div className="menu-item" onClick={() => selectTab(0)}>
+            София предсказывает будущее
+          </div>
+          <div className="menu-item" onClick={() => selectTab(1)}>
+            София создает рецепт молодости и бессмертия
+          </div>
+          <div className="menu-item" onClick={() => selectTab(2)}>
+            София хакнула Мавроди
+          </div>
+          <div className="menu-item" onClick={() => selectTab(3)}>
+            София создает рецепт молодости и бессмертия
+          </div>
+          <div className="menu-item" onClick={() => selectTab(4)}>
+            София создает рецепт молодости и бессмертия
+          </div>
+        </Menu>
       )}
-      
+
       <div className={classes.root} id="page-wrap">
         <Tabs
           className={classes.tabs}
@@ -140,6 +147,7 @@ Dashboard.propTypes = {
   choosedAnswer: PropTypes.object,
   isShowPayment: PropTypes.bool,
   isAuth: PropTypes.bool,
+  isOpenMenu: PropTypes.bool,
   handlerPaymentPopup: PropTypes.func,
   handlerPaymentClose: PropTypes.func,
   selectTab: PropTypes.func,
