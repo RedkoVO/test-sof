@@ -456,7 +456,6 @@ export default compose(
   withState('selectedTabIndex', 'setTabIndex', 0),
   withHandlers({
     selectTab: ({ setTabIndex }) => tabIndex => {
-      console.log('tabIndex', tabIndex)
       setTabIndex(tabIndex)
     },
 

@@ -24,7 +24,7 @@ const Header = ({
       <UserBlock />
     </header>
 
-    {/* {isShow && <Authorization handleCloseModal={handleCloseModal} />} */}
+    {isShow && <Authorization handleCloseModal={handleCloseModal} />}
   </React.Fragment>
 )
 

@@ -1,18 +1,8 @@
-export default theme => ({
+export default () => ({
   root: {
     width: '100%',
     display: 'flex',
-
-    [theme.breakpoints.down('md')]: {
-      flexDirection: 'column',
-      alignItems: 'center'
-    },
-
-    [theme.breakpoints.down('sm')]: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    }
+    padding: '20px 0',
   },
   logout: {
     cursor: 'pointer',

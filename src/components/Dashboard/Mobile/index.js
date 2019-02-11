@@ -22,11 +22,13 @@ const Dashboard = ({
   handlerPaymentPopup,
   handlerPaymentClose,
   selectTab,
-  selectedTabIndex
+  selectedTabIndex,
+  isAuth
 }) => {
   return (
     <main>
-      <Menu pageWrapId={'page-wrap'} width={'280px'}>
+      {isAuth && (
+        <Menu pageWrapId={'page-wrap'} width={'280px'}>
         <div className="menu-item" onClick={() => selectTab(0)}>
           Home
         </div>
@@ -37,6 +39,8 @@ const Dashboard = ({
           Contact
         </div>
       </Menu>
+      )}
+      
       <div className={classes.root} id="page-wrap">
         <Tabs
           className={classes.tabs}
@@ -135,6 +139,7 @@ Dashboard.propTypes = {
   answers5: PropTypes.array,
   choosedAnswer: PropTypes.object,
   isShowPayment: PropTypes.bool,
+  isAuth: PropTypes.bool,
   handlerPaymentPopup: PropTypes.func,
   handlerPaymentClose: PropTypes.func,
   selectTab: PropTypes.func,

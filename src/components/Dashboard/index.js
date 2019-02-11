@@ -16,7 +16,8 @@ const Dashboard = ({
   handlerPaymentClose,
   isTablet,
   selectedTabIndex,
-  selectTab
+  selectTab,
+  isAuth
 }) => (
   <React.Fragment>
     {isTablet ? (
@@ -32,6 +33,7 @@ const Dashboard = ({
         handlerPaymentClose={handlerPaymentClose}
         selectedTabIndex={selectedTabIndex}
         selectTab={selectTab}
+        isAuth={isAuth}
       />
     ) : (
       <DashboardDesktop
@@ -57,6 +59,7 @@ Dashboard.propTypes = {
   answers5: PropTypes.array,
   choosedAnswer: PropTypes.object,
   isShowPayment: PropTypes.bool,
+  isAuth: PropTypes.bool,
   isTablet: PropTypes.bool,
   handlerPaymentPopup: PropTypes.func,
   handlerPaymentClose: PropTypes.func
