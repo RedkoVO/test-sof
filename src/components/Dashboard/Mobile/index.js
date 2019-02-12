@@ -40,7 +40,7 @@ const Dashboard = ({
             София хакнула Мавроди
           </div>
           <div className="menu-item" onClick={() => selectTab(3)}>
-            София создает рецепт молодости и бессмертия
+            Помоги Софии решить глобальные проблемы человечества
           </div>
           <div className="menu-item" onClick={() => selectTab(4)}>
             София создает рецепт молодости и бессмертия

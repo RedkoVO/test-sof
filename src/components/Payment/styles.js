@@ -21,7 +21,7 @@ export default () => ({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgb(243, 243, 243)',
-    padding: '65px',
+    padding: '15px',
     borderRadius: '23px',
     boxShadow: '0px 10px 20px 0px rgba(0,0,0,0.1)'
   },
@@ -36,7 +36,7 @@ export default () => ({
     zIndex: 2
   },
   preview: {
-    width: '300px',
+    width: '285px',
     padding: '20px 25px',
     color: '#fff',
     textAlign: 'center',

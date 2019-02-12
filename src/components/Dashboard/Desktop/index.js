@@ -35,7 +35,7 @@ const Dashboard = ({
             </Tab>
             <Tab className={classes.tab}>София хакнула Мавроди</Tab>
             <Tab className={classes.tab}>
-              София создает рецепт молодости и бессмертия
+              Помоги Софии решить глобальные проблемы человечества
             </Tab>
             <Tab className={classes.tab}>
               София создает рецепт молодости и бессмертия

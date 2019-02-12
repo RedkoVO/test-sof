@@ -8,7 +8,12 @@ const Dashboard = ({ classes, answer, handlerPaymentPopup }) => (
   <div className={classes.wrContent}>
     <div className={classes.headerContent}>
       <div className={classes.title}>{answer.title}</div>
-      <div className={classes.oldPrice}>{answer.oldPrice}</div>
+      {answer.oldPrice && (
+        <div className={classes.oldPrice}>{answer.oldPrice}</div>
+      )}
+      {answer.percent && (
+        <div className={classes.percent}>{answer.percent}</div>
+      )}
       <div className={classes.price}>{answer.price}</div>
     </div>
     <div className={classes.content}>

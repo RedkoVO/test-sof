@@ -27,6 +27,9 @@ export default theme => ({
     color: '#ff7d7d',
     textDecoration: 'line-through'
   },
+  percent: {
+    color: '#ff7d7d'
+  },
   price: {
     fontSize: '17px',
     fontWeight: 900

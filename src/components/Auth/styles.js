@@ -9,7 +9,7 @@ export default theme => ({
     zIndex: 9
   },
   wrAuth: {
-    position: 'absolute',
+    position: 'fixed',
     width: 'fit-content',
     height: 'fit-content',
     marginTop: '80px',

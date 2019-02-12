@@ -12,16 +12,17 @@ const Header = ({
   isAuth,
   isShow,
   handleCloseModal,
-  handleLogout
+  handleLogout,
+  checkAuthState
 }) => (
   <React.Fragment>
     <header className={classes.root}>
       {isAuth && (
         <div className={classes.logout} onClick={() => handleLogout()}>
-          Выйти
+          <span>Выйти</span>
         </div>
       )}
-      <UserBlock />
+      <UserBlock email={checkAuthState ? checkAuthState.email : ''} />
     </header>
 
     {isShow && <Authorization handleCloseModal={handleCloseModal} />}
@@ -33,7 +34,8 @@ Header.propTypes = {
   isShow: PropTypes.bool,
   isAuth: PropTypes.bool,
   handleCloseModal: PropTypes.func,
-  handleLogout: PropTypes.func
+  handleLogout: PropTypes.func,
+  email: PropTypes.string
 }
 
 export default withStyles(styles)(Header)

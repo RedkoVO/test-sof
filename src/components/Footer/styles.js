@@ -16,10 +16,15 @@ export default theme => ({
     },
 
     [theme.breakpoints.down('md')]: {
-      width: 'inherit'
+      width: '320px'
     }
   },
   copyright: {
-    textAlign: 'center'
+    textAlign: 'center',
+
+    [theme.breakpoints.down('md')]: {
+      width: '320px',
+      margin: '0 auto'
+    }
   }
 })

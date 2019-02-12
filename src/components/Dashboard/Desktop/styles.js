@@ -6,7 +6,11 @@ export default theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     width: '1024px',
-    margin: '0 auto'
+    margin: '0 auto',
+
+    [theme.breakpoints.down('md')]: {
+      width: 'inherit'
+    }
   },
   tabs: {
     width: '100%'

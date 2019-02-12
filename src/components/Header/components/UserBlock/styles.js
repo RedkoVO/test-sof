@@ -17,7 +17,7 @@ export default theme => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    width: '100%',
+    width: '100%'
   },
   userBlock: {
     display: 'flex',
@@ -30,8 +30,8 @@ export default theme => ({
     margin: 0,
     textAlign: 'center'
   },
-  userVerification: {
-    fontSize: '10px',
+  email: {
+    fontSize: '13px',
     fontWeight: '500',
     color: 'inherit',
     textDecoration: 'none',
@@ -52,6 +52,10 @@ export default theme => ({
       height: '100%',
       width: '100%',
       borderRadius: '50%'
+    },
+
+    [theme.breakpoints.down('md')]: {
+      margin: 0
     }
   }
 })

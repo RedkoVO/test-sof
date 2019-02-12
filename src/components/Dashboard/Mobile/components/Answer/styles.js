@@ -2,7 +2,7 @@ export default () => ({
   wrContent: {
     width: '220px',
     textAlign: 'center',
-    margin: '5px',
+    margin: '5px'
   },
   headerContent: {
     padding: '20px 0',
@@ -23,6 +23,9 @@ export default () => ({
   oldPrice: {
     color: '#ff7d7d',
     textDecoration: 'line-through'
+  },
+  percent: {
+    color: '#ff7d7d'
   },
   price: {
     fontSize: '17px',

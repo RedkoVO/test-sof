@@ -7,14 +7,14 @@ import Avatar from '../../../../assets/images/user.jpg'
 
 import styles from './styles'
 
-const UserBlock = ({ classes }) => (
+const UserBlock = ({ classes, email }) => (
   <div className={classes.root}>
     <div className={classes.user}>
       <div className={classes.userBlock}>
         <p className={classes.userHello}>
-          Hello, anonymous <br />
-          <Link to={'/'} className={classes.userVerification}>
-            KYC VERIFICATION
+          Добро пожаловать, <br />
+          <Link to={'/'} className={classes.email}>
+            {email}
           </Link>
         </p>
         <div className={classes.userPhoto}>
@@ -26,7 +26,8 @@ const UserBlock = ({ classes }) => (
 )
 
 UserBlock.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  email: PropTypes.string
 }
 
 export default withStyles(styles)(UserBlock)

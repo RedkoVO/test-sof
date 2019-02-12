@@ -15,7 +15,6 @@ export default () => ({
   tabList: {
     margin: 0,
     padding: '40px 0 40px 0',
-    display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
     listStyleType: 'none',
