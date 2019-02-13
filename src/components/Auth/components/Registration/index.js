@@ -10,16 +10,22 @@ const Registration = ({
   classes,
   onSubmit,
   handleAuthModal,
+  handleChangeRecaptcha,
   isCheckEmail,
-  isRegistrationPressed
+  isRegistrationPressed,
+  recaptchaError,
+  errorMessage
 }) => (
   <div className={classes.root}>
     <div className={classes.containerRegistrat}>
       <Step1
         onSubmit={onSubmit}
         handleAuthModal={handleAuthModal}
+        handleChangeRecaptcha={handleChangeRecaptcha}
         isCheckEmail={isCheckEmail}
         isRegistrationPressed={isRegistrationPressed}
+        recaptchaError={recaptchaError}
+        errorMessage={errorMessage}
       />
     </div>
   </div>
@@ -29,8 +35,11 @@ Registration.propTypes = {
   classNamees: PropTypes.object,
   onSubmit: PropTypes.func,
   handleAuthModal: PropTypes.func,
+  handleChangeRecaptcha: PropTypes.func,
   isCheckEmail: PropTypes.bool,
-  isRegistrationPressed: PropTypes.bool
+  isRegistrationPressed: PropTypes.bool,
+  recaptchaError: PropTypes.string,
+  errorMessage: PropTypes.string
 }
 
 export default withStyles(styles)(Registration)

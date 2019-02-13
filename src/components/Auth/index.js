@@ -15,7 +15,10 @@ const Authorization = ({
   isSignin,
   isCheckEmail,
   handleAuthModal,
-  isRegistrationPressed
+  handleChangeRecaptcha,
+  isRegistrationPressed,
+  recaptchaError,
+  errorMessage
 }) => (
   <div className={classes.root}>
     <div className={classes.authOverlay} />
@@ -29,13 +32,22 @@ const Authorization = ({
       </div>
 
       {isSignin ? (
-        <SignIn onSubmit={onSubmit} handleAuthModal={handleAuthModal} />
+        <SignIn
+          onSubmit={onSubmit}
+          handleAuthModal={handleAuthModal}
+          handleChangeRecaptcha={handleChangeRecaptcha}
+          errorMessage={errorMessage}
+          recaptchaError={recaptchaError}
+        />
       ) : (
         <Registration
           onSubmit={onSubmit}
           handleAuthModal={handleAuthModal}
+          handleChangeRecaptcha={handleChangeRecaptcha}
           isCheckEmail={isCheckEmail}
           isRegistrationPressed={isRegistrationPressed}
+          errorMessage={errorMessage}
+          recaptchaError={recaptchaError}
         />
       )}
     </div>
@@ -45,10 +57,13 @@ const Authorization = ({
 Authorization.propTypes = {
   classNamees: PropTypes.object,
   handleAuthModal: PropTypes.func,
+  handleChangeRecaptcha: PropTypes.func,
   isCheckEmail: PropTypes.bool,
   isRegistrationPressed: PropTypes.bool,
   onSubmit: PropTypes.func,
-  isSignin: PropTypes.bool
+  isSignin: PropTypes.bool,
+  recaptchaError: PropTypes.string,
+  errorMessage: PropTypes.string
 }
 
 export default withStyles(styles)(Authorization)

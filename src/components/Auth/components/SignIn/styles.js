@@ -101,5 +101,12 @@ export default theme => ({
       fontSize: '14px',
       width: '170px'
     }
+  },
+  recaptcha: {
+    paddingTop: '15px'
+  },
+  error: {
+    color: 'red',
+    paddingTop: '10px'
   }
 })

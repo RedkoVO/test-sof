@@ -24,55 +24,98 @@ export default compose(
   withState('isSignin', 'setIsSignin', true),
   withState('isCheckEmail', 'setIsCheckEmail', false),
   withState('isRegistrationPressed', 'setRegistrationPressed', false),
+  withState('errorMessage', 'setErrorMessage', ''),
+  withState('recaptcha', 'setRecaptcha', ''),
+  withState('recaptchaError', 'setRecaptchaError', ''),
   withHandlers({
-    handleAuthModal: ({ isSignin, setIsSignin, dispatch }) => () => {
+    handleAuthModal: ({
+      isSignin,
+      setIsSignin,
+      setErrorMessage,
+      setRecaptchaError,
+      setIsCheckEmail,
+      setRecaptcha,
+      dispatch
+    }) => () => {
       setIsSignin(!isSignin)
+      setErrorMessage('')
+      setRecaptchaError('')
+      setRecaptcha('')
+      setIsCheckEmail(false)
       dispatch(reset('authirization'))
+    },
+
+    handleChangeRecaptcha: ({ setRecaptcha, setRecaptchaError }) => hash => {
+      setRecaptcha(hash)
+      setRecaptchaError('')
     },
 
     onSubmit: ({
       handleCloseModal,
       handleSubmit,
-      isCheckEmail,
       setIsCheckEmail,
       dispatch,
       isSignin,
       setRegistrationPressed,
-      isRegistrationPressed
+      isRegistrationPressed,
+      setErrorMessage,
+      setRecaptchaError,
+      recaptcha
     }) =>
       handleSubmit(variables => {
         if (isSignin) {
-          const data = {
-            email: variables.email,
-            pass: variables.pass,
-            recaptcha: 'tetetetetetetetetete'
-          }
-          dispatch(loginUser(data))
-            .then(res => {
-              if (res && res.success) {
-                localStorage.setItem('token', res.token)
-                handleCloseModal()
-                dispatch(checkAuth())
-              }
-            })
-            .catch(err => console.log('Error: Auth', err))
-        } else {
-          if (!isRegistrationPressed) {
+          if (recaptcha) {
             const data = {
               email: variables.email,
-              recaptcha: '111111111111'
+              pass: variables.pass,
+              recaptcha
             }
-
-            setRegistrationPressed(true)
-
-            dispatch(registrationEmail(data))
+            dispatch(loginUser(data))
               .then(res => {
                 if (res && res.success) {
-                  setIsCheckEmail(!isCheckEmail)
-                  setRegistrationPressed(false)
+                  localStorage.setItem('token', res.token)
+                  handleCloseModal()
+                  dispatch(checkAuth())
+                } else {
+                  if (res.code === 3982) {
+                    setErrorMessage(
+                      'Такой пользователь не существует, зарегестрируйтесь.'
+                    )
+                  }
                 }
               })
               .catch(err => console.log('Error: Auth', err))
+          } else {
+            setRecaptchaError('Заполните капчу')
+          }
+        } else {
+          if (recaptcha) {
+            if (!isRegistrationPressed) {
+              const data = {
+                email: variables.email,
+                recaptcha: '111111111111'
+              }
+
+              setRegistrationPressed(true)
+
+              dispatch(registrationEmail(data))
+                .then(res => {
+                  if (res && res.success) {
+                    setIsCheckEmail(true)
+                    setRegistrationPressed(false)
+                  } else {
+                    setRegistrationPressed(false)
+                    if (res.code === 5059) {
+                      setErrorMessage(
+                        'Такой пользователь существует'
+                      )
+                    }
+                  }
+                })
+                .catch(err => console.log('Error: Auth', err))
+            }
+          } else {
+            setRecaptchaError('Заполните капчу')
           }
         }
       })

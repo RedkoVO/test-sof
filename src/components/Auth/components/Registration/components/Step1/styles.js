@@ -38,13 +38,13 @@ export default theme => ({
     paddingLeft: '25px',
     boxSizing: 'border-box',
     backgroundColor: 'rgba(	255, 255, 255, 0.61)',
-    
+
     '&.input-error': {
       border: '1px solid red'
     },
 
     [theme.breakpoints.down('md')]: {
-      width: '300px',
+      width: '300px'
     }
   },
   step1BtnBack: {
@@ -66,7 +66,7 @@ export default theme => ({
 
     [theme.breakpoints.down('md')]: {
       fontSize: '14px',
-      width: '115px',
+      width: '115px'
     }
   },
   step1BtnsFinish: {
@@ -94,8 +94,15 @@ export default theme => ({
       width: '170px'
     }
   },
+  recaptcha: {
+    paddingTop: '15px'
+  },
   checkEmail: {
     color: 'green',
+    paddingTop: '10px'
+  },
+  error: {
+    color: 'red',
     paddingTop: '10px'
   }
 })
