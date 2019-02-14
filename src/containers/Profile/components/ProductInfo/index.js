@@ -1,6 +1,6 @@
 import compose from 'recompose/compose'
 import { connect } from 'react-redux'
-import { withHandlers, lifecycle, pure } from 'recompose'
+import { withHandlers, withState, pure } from 'recompose'
 
 import { getProductInfo } from '../../../../redux/actions/profile'
 
@@ -12,19 +12,21 @@ const mapStateToProps = state => ({
 
 export default compose(
   connect(mapStateToProps),
+  withState('productInfo', 'setProductInfo', {}),
   withHandlers({
-    handlerShowProductInfo: ({ dispatch }) => id => {
+    handlerShowProductInfo: ({ setProductInfo, dispatch }) => id => {
       const data = { product_id: id }
 
       dispatch(getProductInfo(data))
+        .then(res => {
+          if (res && res.success) {
+            setProductInfo(res.product_info)
+          }
+        })
+        .catch(err => {
+          console.log('ERROR product info:', err)
+        })
     }
   }),
-  // lifecycle({
-  //   componentDidMount() {
-  //     const { dispatch, id } = this.props
-
-  //     console.log('id', id)
-
-  //   }
-  // }),
+  pure
 )(ProductInfo)

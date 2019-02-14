@@ -8,7 +8,8 @@ import styles from './styles'
 const PropductInfo = ({
   classes,
   question,
-  handlerShowProductInfo,
+  productInfo,
+  handlerShowProductInfo
 }) => {
   const statusButton = status => {
     switch (status) {
@@ -33,6 +34,8 @@ const PropductInfo = ({
       >
         {statusButton(question.status).text}
       </div>
+
+      {productInfo.question_type}
     </div>
   )
 }
@@ -40,6 +43,7 @@ const PropductInfo = ({
 PropductInfo.propTypes = {
   classes: PropTypes.object,
   question: PropTypes.object,
+  productInfo: PropTypes.object,
   handlerShowProductInfo: PropTypes.func
 }
 
