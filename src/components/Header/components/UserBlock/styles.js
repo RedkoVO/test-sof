@@ -21,9 +21,9 @@ export default theme => ({
   },
   userBlock: {
     display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
-    width: '100%'
+    width: '100%',
+    justifyContent: 'flex-start'
   },
   userHello: {
     fontSize: '18px',
@@ -34,11 +34,7 @@ export default theme => ({
     fontSize: '13px',
     fontWeight: '500',
     color: 'inherit',
-    textDecoration: 'none',
-
-    '&:hover': {
-      textDecoration: 'underline'
-    }
+    textDecoration: 'none'
   },
   userPhoto: {
     height: '50px',
@@ -56,6 +52,30 @@ export default theme => ({
 
     [theme.breakpoints.down('md')]: {
       margin: 0
+    }
+  },
+  menu: {
+    '& ul': {
+      listStyle: 'none',
+
+      '& li': {
+        border: '2px solid #575757',
+        borderRadius: '20px',
+        cursor: 'pointer',
+
+        '&:hover': {
+          '& a': {
+            textDecoration: 'underline'
+          }
+        },
+
+        '& a': {
+          display: 'block',
+          padding: '10px',
+          textDecoration: 'none',
+          color: '#575757'
+        }
+      }
     }
   }
 })

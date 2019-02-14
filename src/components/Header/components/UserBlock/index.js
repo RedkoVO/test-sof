@@ -11,14 +11,19 @@ const UserBlock = ({ classes, email }) => (
   <div className={classes.root}>
     <div className={classes.user}>
       <div className={classes.userBlock}>
-        <p className={classes.userHello}>
+        <div className={classes.userHello}>
           Добро пожаловать, <br />
-          <Link to={'/'} className={classes.email}>
-            {email}
-          </Link>
-        </p>
+          <div className={classes.email}>{email}</div>
+        </div>
         <div className={classes.userPhoto}>
           <img src={Avatar} alt="" />
+        </div>
+        <div className={classes.menu}>
+          <ul>
+            <li>
+              <Link to={'/en/web/profile'}>Личный кабинет</Link>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

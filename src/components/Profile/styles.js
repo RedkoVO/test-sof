@@ -17,9 +17,8 @@ export default theme => ({
   },
   tabList: {
     margin: 0,
-    padding: '40px 0 40px 0',
+    padding: '40px 0 0 0',
     display: 'flex',
-    justifyContent: 'space-between',
     listStyleType: 'none',
 
     [theme.breakpoints.down('md')]: {
@@ -31,15 +30,19 @@ export default theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    flexGrow: 1,
     width: '190px',
     padding: '8px',
     color: '#04b1ff',
     fontSize: '14px',
     textAlign: 'center',
     border: '2px solid #04b1ff',
-    borderRadius: '30px',
+    borderLeft: 'none',
     cursor: 'pointer',
 
+    '&:first-child': {
+      borderLeft: '2px solid #04b1ff'
+    },
     '&:hover': {
       backgroundColor: '#99d8f5'
     },
