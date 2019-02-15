@@ -56,9 +56,11 @@ export default theme => ({
   },
   menu: {
     '& ul': {
+      display: 'flex',
       listStyle: 'none',
 
       '& li': {
+        marginRight: '10px',
         border: '2px solid #575757',
         borderRadius: '20px',
         cursor: 'pointer',

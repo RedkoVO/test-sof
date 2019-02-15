@@ -25,7 +25,7 @@ const Header = ({
       <UserBlock email={checkAuthState ? checkAuthState.email : ''} />
     </header>
 
-    {/* {isShow && <Authorization handleCloseModal={handleCloseModal} />} */}
+    {isShow && <Authorization handleCloseModal={handleCloseModal} />}
   </React.Fragment>
 )
 

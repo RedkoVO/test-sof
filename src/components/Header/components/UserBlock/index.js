@@ -21,6 +21,9 @@ const UserBlock = ({ classes, email }) => (
         <div className={classes.menu}>
           <ul>
             <li>
+              <Link to={'/en/web/'}>Главная</Link>
+            </li>
+            <li>
               <Link to={'/en/web/profile'}>Личный кабинет</Link>
             </li>
           </ul>

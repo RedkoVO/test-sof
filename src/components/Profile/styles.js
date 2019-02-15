@@ -5,12 +5,27 @@ export default theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    position: 'relative',
     width: '1024px',
     margin: '0 auto',
+    minHeight: '400px',
 
     [theme.breakpoints.down('md')]: {
       width: 'inherit'
     }
+  },
+  spinner: {
+    position: 'absolute',
+    width: '40px',
+    height: '40px',
+    top: 0,
+    bottom: 0,
+    margin: 'auto'
+  },
+  title: {
+    paddingTop: '10px',
+    fontSize: '30px',
+    fontWeight: 600
   },
   tabs: {
     width: '100%'
