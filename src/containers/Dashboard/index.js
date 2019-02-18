@@ -5,6 +5,8 @@ import withDeviceTarget from '../../hocs/withDeviceTarget'
 
 import Dashboard from '../../components/Dashboard'
 
+//future, immortality, mavrody, troubles
+
 const answers1 = [
   {
     id: 1,
@@ -448,14 +450,20 @@ export default compose(
     handlerPaymentPopup: ({
       setShowPayment,
       isShowPayment,
-      setChoosedAnswer
-    }) => answer => {
-      setShowPayment(!isShowPayment)
-      setChoosedAnswer(answer)
+      setChoosedAnswer,
+      history
+    }) => (answer, name) => {
+      // setShowPayment(!isShowPayment)
+      // setChoosedAnswer(answer)
+      // console.log('answer', answer)
+      // console.log('name', name)
+
+      history.push(`/en/web/${name}/${answer.bundle}/`)
     },
 
-    handlerPaymentClose: ({ setShowPayment }) => () => {
-      setShowPayment(false)
+    handlerPaymentClose: ({ setShowPayment, history }) => () => {
+      // setShowPayment(false)
+      history.push(`/en/web/`)
     }
   }),
   withProps(() => ({ answers1, answers2, answers3, answers4, answers5 })),

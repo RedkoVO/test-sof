@@ -18,7 +18,8 @@ const Dashboard = ({
   selectedTabIndex,
   selectTab,
   isAuth,
-  isOpenMenu
+  isOpenMenu,
+  match
 }) => (
   <React.Fragment>
     {isTablet ? (
@@ -36,6 +37,7 @@ const Dashboard = ({
         selectTab={selectTab}
         isAuth={isAuth}
         isOpenMenu={isOpenMenu}
+        match={match}
       />
     ) : (
       <DashboardDesktop
@@ -48,6 +50,7 @@ const Dashboard = ({
         isShowPayment={isShowPayment}
         handlerPaymentPopup={handlerPaymentPopup}
         handlerPaymentClose={handlerPaymentClose}
+        match={match}
       />
     )}
   </React.Fragment>
@@ -65,7 +68,8 @@ Dashboard.propTypes = {
   isTablet: PropTypes.bool,
   isOpenMenu: PropTypes.bool,
   handlerPaymentPopup: PropTypes.func,
-  handlerPaymentClose: PropTypes.func
+  handlerPaymentClose: PropTypes.func,
+  match: PropTypes.object
 }
 
 export default Dashboard

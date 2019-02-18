@@ -18,7 +18,7 @@ const RootRoute = props => {
         component={ConfirmEmail}
       />
       <RoutePage path={'/en/web/profile'} component={Profile} />
-      <RoutePage path={'/en/web'} component={Dashboard} />
+      <RoutePage path={'/en/web/:type?/:bundle?/:pay?'} component={Dashboard} />
       <Redirect to="/en/web" />
     </Switch>
   )
