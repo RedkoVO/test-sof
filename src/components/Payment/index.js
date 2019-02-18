@@ -12,7 +12,7 @@ const Payment = ({
   handlerPaymentSubmit,
   match
 }) => {
-  console.log('choosedAnswer', choosedAnswer)
+
   return (
     <div className={classes.root}>
       <div className={classes.popup}>
