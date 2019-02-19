@@ -17,6 +17,9 @@ const Dashboard = ({
   answers3,
   answers4,
   answers5,
+
+  answers,
+
   choosedAnswer,
   isShowPayment,
   handlerPaymentPopup,
@@ -44,7 +47,7 @@ const Dashboard = ({
       break
   }
 
-  // console.log('popupData', popupData)
+  // console.log('answers', answers)
 
   return (
     <main>
@@ -55,7 +58,7 @@ const Dashboard = ({
           selectedTabPanelClassName={classes.selectedPanel}
         >
           <TabList className={classes.tabList}>
-            <Tab className={classes.tab}>София предсказывает будущее</Tab>
+            {/* <Tab className={classes.tab}>София предсказывает будущее</Tab>
             <Tab className={classes.tab}>
               София создает рецепт молодости и бессмертия
             </Tab>
@@ -65,9 +68,34 @@ const Dashboard = ({
             </Tab>
             <Tab className={classes.tab}>
               София создает рецепт молодости и бессмертия
-            </Tab>
+            </Tab> */}
+
+            {answers.map(item => (
+              <Tab className={classes.tab} key={item.id}>
+                {item.title}
+              </Tab>
+            ))}
           </TabList>
-          <TabPanel className={classes.tabPanel}>
+
+          {answers.map(item => {
+            // console.log('item', item)
+            return (
+              <TabPanel className={classes.tabPanel} key={item.id}>
+                {item.answers.map(answerItem => (
+                    <Answer
+                      answer={answerItem}
+                      key={answerItem.id}
+                      isShowPayment={isShowPayment}
+                      handlerPaymentPopup={handlerPaymentPopup}
+                      name={item.bundle} //TODO: refactor
+                    />
+                  
+                ))}
+              </TabPanel>
+            )
+          })}
+
+          {/* <TabPanel className={classes.tabPanel}>
             {answers1.map(item => (
               <Answer
                 answer={item}
@@ -124,20 +152,20 @@ const Dashboard = ({
                 handlerPaymentPopup={handlerPaymentPopup}
               />
             ))}
-          </TabPanel>
+          </TabPanel> */}
         </Tabs>
       </div>
 
       {/* {(isShowPayment || !isEmpty(popupData)) && ( */}
       {!isEmpty(popupData) && (
-          <Payment
-            // popupData={popupData}
-            match={match}
-            // choosedAnswer={!isEmpty(choosedAnswer) ? choosedAnswer : popupData}
-            choosedAnswer={popupData}
-            handlerPaymentClose={handlerPaymentClose}
-          />
-        )}
+        <Payment
+          // popupData={popupData}
+          match={match}
+          // choosedAnswer={!isEmpty(choosedAnswer) ? choosedAnswer : popupData}
+          choosedAnswer={popupData}
+          handlerPaymentClose={handlerPaymentClose}
+        />
+      )}
     </main>
   )
 }
@@ -149,6 +177,9 @@ Dashboard.propTypes = {
   answers3: PropTypes.array,
   answers4: PropTypes.array,
   answers5: PropTypes.array,
+
+  answers: PropTypes.array,
+
   choosedAnswer: PropTypes.object,
   isShowPayment: PropTypes.bool,
   handlerPaymentPopup: PropTypes.func,

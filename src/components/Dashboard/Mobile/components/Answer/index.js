@@ -4,7 +4,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 
 import styles from './styles'
 
-const Dashboard = ({ classes, answer, handlerPaymentPopup }) => (
+const Dashboard = ({ classes, answer, handlerPaymentPopup, name }) => (
   <div className={classes.wrContent}>
     <div className={classes.headerContent}>
       <div className={classes.title}>{answer.title}</div>
@@ -26,7 +26,7 @@ const Dashboard = ({ classes, answer, handlerPaymentPopup }) => (
 
       <button
         className={classes.button}
-        onClick={() => handlerPaymentPopup(answer)}
+        onClick={() => handlerPaymentPopup(answer, name)}
       >
         Получить ответ
       </button>

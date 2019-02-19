@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import { reveal as Menu } from 'react-burger-menu'
+import isEmpty from 'lodash/isEmpty'
+import find from 'lodash/find'
 import withStyles from '@material-ui/core/styles/withStyles'
 
 import Payment from '../../../containers/Payment'
@@ -24,8 +26,26 @@ const Dashboard = ({
   selectTab,
   selectedTabIndex,
   isOpenMenu,
-  isAuth
+  isAuth,
+  match
 }) => {
+  let popupData = {}
+
+  switch (match.params.type) {
+    case 'future':
+      popupData = find(answers1, { bundle: match.params.bundle })
+      break
+    case 'immortality':
+      popupData = find(answers2, { bundle: match.params.bundle })
+      break
+    case 'mavrody':
+      popupData = find(answers3, { bundle: match.params.bundle })
+      break
+    case 'troubles':
+      popupData = find(answers4, { bundle: match.params.bundle })
+      break
+  }
+
   return (
     <main>
       {isAuth && (
@@ -77,6 +97,7 @@ const Dashboard = ({
                 key={item.id}
                 isShowPayment={isShowPayment}
                 handlerPaymentPopup={handlerPaymentPopup}
+                name="future" //TODO: refactor
               />
             ))}
           </TabPanel>
@@ -88,6 +109,7 @@ const Dashboard = ({
                 key={item.id}
                 isShowPayment={isShowPayment}
                 handlerPaymentPopup={handlerPaymentPopup}
+                name="immortality" //TODO: refactor
               />
             ))}
           </TabPanel>
@@ -99,6 +121,7 @@ const Dashboard = ({
                 key={item.id}
                 isShowPayment={isShowPayment}
                 handlerPaymentPopup={handlerPaymentPopup}
+                name="mavrody" //TODO: refactor
               />
             ))}
           </TabPanel>
@@ -110,6 +133,7 @@ const Dashboard = ({
                 key={item.id}
                 isShowPayment={isShowPayment}
                 handlerPaymentPopup={handlerPaymentPopup}
+                name="troubles" //TODO: refactor
               />
             ))}
           </TabPanel>
@@ -127,10 +151,12 @@ const Dashboard = ({
         </Tabs>
       </div>
 
-      {isShowPayment && (
+      {!isEmpty(popupData) && (
         <Payment
-          choosedAnswer={choosedAnswer}
+          // choosedAnswer={choosedAnswer}
+          match={match}
           handlerPaymentClose={handlerPaymentClose}
+          choosedAnswer={popupData}
         />
       )}
     </main>
@@ -151,7 +177,9 @@ Dashboard.propTypes = {
   handlerPaymentPopup: PropTypes.func,
   handlerPaymentClose: PropTypes.func,
   selectTab: PropTypes.func,
-  selectedTabIndex: PropTypes.number
+  selectedTabIndex: PropTypes.number,
+
+  match: PropTypes.object
 }
 
 export default withStyles(styles)(Dashboard)

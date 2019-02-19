@@ -10,6 +10,9 @@ const Dashboard = ({
   answers3,
   answers4,
   answers5,
+
+  answers,
+
   choosedAnswer,
   isShowPayment,
   handlerPaymentPopup,
@@ -46,6 +49,9 @@ const Dashboard = ({
         answers3={answers3}
         answers4={answers4}
         answers5={answers5}
+
+        answers={answers}
+
         choosedAnswer={choosedAnswer}
         isShowPayment={isShowPayment}
         handlerPaymentPopup={handlerPaymentPopup}
@@ -62,6 +68,9 @@ Dashboard.propTypes = {
   answers3: PropTypes.array,
   answers4: PropTypes.array,
   answers5: PropTypes.array,
+
+  answers: PropTypes.array,
+  
   choosedAnswer: PropTypes.object,
   isShowPayment: PropTypes.bool,
   isAuth: PropTypes.bool,
