@@ -29,7 +29,7 @@ const Header = ({
       />
     </header>
 
-    {/* {isShow && <Authorization handleCloseModal={handleCloseModal} />} */}
+    {isShow && <Authorization handleCloseModal={handleCloseModal} />}
   </React.Fragment>
 )
 
