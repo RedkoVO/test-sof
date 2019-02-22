@@ -12,42 +12,15 @@ import styles from './styles'
 
 const Dashboard = ({
   classes,
-  answers1,
-  answers2,
-  answers3,
-  answers4,
-  answers5,
-
   answers,
-
-  choosedAnswer,
-  isShowPayment,
   handlerPaymentPopup,
   handlerPaymentClose,
   match
 }) => {
-  // console.log('match', match)
-  // future, immortality, mavrody, troubles
-  // future/1_answer/pay
-
-  let popupData = {}
-
-  switch (match.params.type) {
-    case 'future':
-      popupData = find(answers1, { bundle: match.params.bundle })
-      break
-    case 'immortality':
-      popupData = find(answers2, { bundle: match.params.bundle })
-      break
-    case 'mavrody':
-      popupData = find(answers3, { bundle: match.params.bundle })
-      break
-    case 'troubles':
-      popupData = find(answers4, { bundle: match.params.bundle })
-      break
-  }
-
-  // console.log('answers', answers)
+  const popupDataType = find(answers, { bundle: match.params.type })
+  const popupData =
+    popupDataType &&
+    find(popupDataType.answers, { bundle: match.params.bundle })
 
   return (
     <main>
@@ -58,18 +31,6 @@ const Dashboard = ({
           selectedTabPanelClassName={classes.selectedPanel}
         >
           <TabList className={classes.tabList}>
-            {/* <Tab className={classes.tab}>София предсказывает будущее</Tab>
-            <Tab className={classes.tab}>
-              София создает рецепт молодости и бессмертия
-            </Tab>
-            <Tab className={classes.tab}>София хакнула Мавроди</Tab>
-            <Tab className={classes.tab}>
-              Помоги Софии решить глобальные проблемы человечества
-            </Tab>
-            <Tab className={classes.tab}>
-              София создает рецепт молодости и бессмертия
-            </Tab> */}
-
             {answers.map(item => (
               <Tab className={classes.tab} key={item.id}>
                 {item.title}
@@ -77,91 +38,24 @@ const Dashboard = ({
             ))}
           </TabList>
 
-          {answers.map(item => {
-            // console.log('item', item)
-            return (
-              <TabPanel className={classes.tabPanel} key={item.id}>
-                {item.answers.map(answerItem => (
-                    <Answer
-                      answer={answerItem}
-                      key={answerItem.id}
-                      isShowPayment={isShowPayment}
-                      handlerPaymentPopup={handlerPaymentPopup}
-                      name={item.bundle} //TODO: refactor
-                    />
-                  
-                ))}
-              </TabPanel>
-            )
-          })}
-
-          {/* <TabPanel className={classes.tabPanel}>
-            {answers1.map(item => (
-              <Answer
-                answer={item}
-                key={item.id}
-                isShowPayment={isShowPayment}
-                handlerPaymentPopup={handlerPaymentPopup}
-                name="future" //TODO: refactor
-              />
-            ))}
-          </TabPanel>
-
-          <TabPanel className={classes.tabPanel}>
-            {answers2.map(item => (
-              <Answer
-                answer={item}
-                key={item.id}
-                isShowPayment={isShowPayment}
-                handlerPaymentPopup={handlerPaymentPopup}
-                name="immortality" //TODO: refactor
-              />
-            ))}
-          </TabPanel>
-
-          <TabPanel className={classes.tabPanel}>
-            {answers3.map(item => (
-              <Answer
-                answer={item}
-                key={item.id}
-                isShowPayment={isShowPayment}
-                handlerPaymentPopup={handlerPaymentPopup}
-                name="mavrody" //TODO: refactor
-              />
-            ))}
-          </TabPanel>
-
-          <TabPanel className={classes.tabPanel}>
-            {answers4.map(item => (
-              <Answer
-                answer={item}
-                key={item.id}
-                isShowPayment={isShowPayment}
-                handlerPaymentPopup={handlerPaymentPopup}
-                name="troubles" //TODO: refactor
-              />
-            ))}
-          </TabPanel>
-
-          <TabPanel className={classes.tabPanel}>
-            {answers5.map(item => (
-              <Answer
-                answer={item}
-                key={item.id}
-                isShowPayment={isShowPayment}
-                handlerPaymentPopup={handlerPaymentPopup}
-              />
-            ))}
-          </TabPanel> */}
+          {answers.map(item => (
+            <TabPanel className={classes.tabPanel} key={item.id}>
+              {item.answers.map(answerItem => (
+                <Answer
+                  answer={answerItem}
+                  key={answerItem.id}
+                  handlerPaymentPopup={handlerPaymentPopup}
+                  name={item.bundle}
+                />
+              ))}
+            </TabPanel>
+          ))}
         </Tabs>
       </div>
 
-      {/* {(isShowPayment || !isEmpty(popupData)) && ( */}
       {!isEmpty(popupData) && (
         <Payment
-          // popupData={popupData}
           match={match}
-          // choosedAnswer={!isEmpty(choosedAnswer) ? choosedAnswer : popupData}
           choosedAnswer={popupData}
           handlerPaymentClose={handlerPaymentClose}
         />
@@ -172,16 +66,7 @@ const Dashboard = ({
 
 Dashboard.propTypes = {
   classes: PropTypes.object,
-  answers1: PropTypes.array,
-  answers2: PropTypes.array,
-  answers3: PropTypes.array,
-  answers4: PropTypes.array,
-  answers5: PropTypes.array,
-
   answers: PropTypes.array,
-
-  choosedAnswer: PropTypes.object,
-  isShowPayment: PropTypes.bool,
   handlerPaymentPopup: PropTypes.func,
   handlerPaymentClose: PropTypes.func,
   match: PropTypes.object

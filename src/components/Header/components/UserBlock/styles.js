@@ -23,7 +23,11 @@ export default theme => ({
     display: 'flex',
     alignItems: 'center',
     width: '100%',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+
+    [theme.breakpoints.down('md')]: {
+      justifyContent: 'center'
+    }
   },
   userHello: {
     fontSize: '18px',

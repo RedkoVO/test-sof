@@ -2,6 +2,8 @@ import compose from 'recompose/compose'
 import { connect } from 'react-redux'
 import { withState, withHandlers, lifecycle, pure } from 'recompose'
 
+import withDeviceTarget from '../../hocs/withDeviceTarget'
+
 import { checkAuth } from '../../redux/actions/auth'
 
 import Header from '../../components/Header/'
@@ -12,6 +14,7 @@ const mapStateToProps = state => ({
 
 export default compose(
   connect(mapStateToProps),
+  withDeviceTarget,
   withState('isShow', 'setIsShow', false),
   withHandlers({
     handleLogout: ({ dispatch, history }) => () => {

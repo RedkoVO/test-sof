@@ -5,16 +5,7 @@ import DashboardMobile from './Mobile'
 import DashboardDesktop from './Desktop'
 
 const Dashboard = ({
-  answers1,
-  answers2,
-  answers3,
-  answers4,
-  answers5,
-
   answers,
-
-  choosedAnswer,
-  isShowPayment,
   handlerPaymentPopup,
   handlerPaymentClose,
   isTablet,
@@ -27,13 +18,7 @@ const Dashboard = ({
   <React.Fragment>
     {isTablet ? (
       <DashboardMobile
-        answers1={answers1}
-        answers2={answers2}
-        answers3={answers3}
-        answers4={answers4}
-        answers5={answers5}
-        choosedAnswer={choosedAnswer}
-        isShowPayment={isShowPayment}
+        answers={answers}
         handlerPaymentPopup={handlerPaymentPopup}
         handlerPaymentClose={handlerPaymentClose}
         selectedTabIndex={selectedTabIndex}
@@ -44,16 +29,7 @@ const Dashboard = ({
       />
     ) : (
       <DashboardDesktop
-        answers1={answers1}
-        answers2={answers2}
-        answers3={answers3}
-        answers4={answers4}
-        answers5={answers5}
-
         answers={answers}
-
-        choosedAnswer={choosedAnswer}
-        isShowPayment={isShowPayment}
         handlerPaymentPopup={handlerPaymentPopup}
         handlerPaymentClose={handlerPaymentClose}
         match={match}
@@ -63,16 +39,7 @@ const Dashboard = ({
 )
 
 Dashboard.propTypes = {
-  answers1: PropTypes.array,
-  answers2: PropTypes.array,
-  answers3: PropTypes.array,
-  answers4: PropTypes.array,
-  answers5: PropTypes.array,
-
   answers: PropTypes.array,
-  
-  choosedAnswer: PropTypes.object,
-  isShowPayment: PropTypes.bool,
   isAuth: PropTypes.bool,
   isTablet: PropTypes.bool,
   isOpenMenu: PropTypes.bool,

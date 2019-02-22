@@ -35,7 +35,7 @@ export default compose(
           bundle: choosedAnswer.bundle,
           payment: 'visa'
         }
-  
+
         dispatch(postPayment(data))
           .then(res => {
             if (res && res.success) {

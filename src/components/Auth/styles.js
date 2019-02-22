@@ -6,7 +6,7 @@ export default theme => ({
     width: '100%',
     height: 'calc(100% + 80px)',
     backgroundColor: '#fff',
-    zIndex: 9
+    zIndex: 9999
   },
   wrAuth: {
     position: 'fixed',
@@ -18,7 +18,7 @@ export default theme => ({
     bottom: 0,
     right: 0,
     margin: 'auto',
-    zIndex: 9,
+    zIndex: 9999,
 
     [theme.breakpoints.down('md')]: {
       padding: '0 10px'

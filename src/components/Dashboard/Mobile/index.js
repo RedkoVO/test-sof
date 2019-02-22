@@ -14,13 +14,7 @@ import styles from './styles'
 
 const Dashboard = ({
   classes,
-  answers1,
-  answers2,
-  answers3,
-  answers4,
-  answers5,
-  choosedAnswer,
-  isShowPayment,
+  answers,
   handlerPaymentPopup,
   handlerPaymentClose,
   selectTab,
@@ -29,44 +23,30 @@ const Dashboard = ({
   isAuth,
   match
 }) => {
-  let popupData = {}
-
-  switch (match.params.type) {
-    case 'future':
-      popupData = find(answers1, { bundle: match.params.bundle })
-      break
-    case 'immortality':
-      popupData = find(answers2, { bundle: match.params.bundle })
-      break
-    case 'mavrody':
-      popupData = find(answers3, { bundle: match.params.bundle })
-      break
-    case 'troubles':
-      popupData = find(answers4, { bundle: match.params.bundle })
-      break
-  }
+  const popupDataType = find(answers, { bundle: match.params.type })
+  const popupData =
+    popupDataType &&
+    find(popupDataType.answers, { bundle: match.params.bundle })
 
   return (
     <main>
-      {isAuth && (
-        <Menu pageWrapId={'page-wrap'} width={'280px'} isOpen={isOpenMenu}>
-          <div className="menu-item" onClick={() => selectTab(0)}>
-            София предсказывает будущее
-          </div>
-          <div className="menu-item" onClick={() => selectTab(1)}>
-            София создает рецепт молодости и бессмертия
-          </div>
-          <div className="menu-item" onClick={() => selectTab(2)}>
-            София хакнула Мавроди
-          </div>
-          <div className="menu-item" onClick={() => selectTab(3)}>
-            Помоги Софии решить глобальные проблемы человечества
-          </div>
-          <div className="menu-item" onClick={() => selectTab(4)}>
-            София создает рецепт молодости и бессмертия
-          </div>
-        </Menu>
-      )}
+      <Menu pageWrapId={'page-wrap'} width={'280px'} isOpen={isOpenMenu}>
+        <div className="menu-item" onClick={() => selectTab(0)}>
+          София предсказывает будущее
+        </div>
+        <div className="menu-item" onClick={() => selectTab(1)}>
+          София создает рецепт молодости и бессмертия
+        </div>
+        <div className="menu-item" onClick={() => selectTab(2)}>
+          София хакнула Мавроди
+        </div>
+        <div className="menu-item" onClick={() => selectTab(3)}>
+          Помоги Софии решить глобальные проблемы человечества
+        </div>
+        <div className="menu-item" onClick={() => selectTab(4)}>
+          София создает рецепт молодости и бессмертия
+        </div>
+      </Menu>
 
       <div className={classes.root} id="page-wrap">
         <Tabs
@@ -77,83 +57,30 @@ const Dashboard = ({
           selectedTabPanelClassName={classes.selectedPanel}
         >
           <TabList className={classes.tabList}>
-            <Tab className={classes.tab}>София предсказывает будущее</Tab>
-            <Tab className={classes.tab}>
-              София создает рецепт молодости и бессмертия
-            </Tab>
-            <Tab className={classes.tab}>София хакнула Мавроди</Tab>
-            <Tab className={classes.tab}>
-              София создает рецепт молодости и бессмертия
-            </Tab>
-            <Tab className={classes.tab}>
-              София создает рецепт молодости и бессмертия
-            </Tab>
+            {answers.map(item => (
+              <Tab className={classes.tab} key={item.id}>
+                {item.title}
+              </Tab>
+            ))}
           </TabList>
 
-          <TabPanel className={classes.tabPanel}>
-            {answers1.map(item => (
-              <Answer
-                answer={item}
-                key={item.id}
-                isShowPayment={isShowPayment}
-                handlerPaymentPopup={handlerPaymentPopup}
-                name="future" //TODO: refactor
-              />
-            ))}
-          </TabPanel>
-
-          <TabPanel className={classes.tabPanel}>
-            {answers2.map(item => (
-              <Answer
-                answer={item}
-                key={item.id}
-                isShowPayment={isShowPayment}
-                handlerPaymentPopup={handlerPaymentPopup}
-                name="immortality" //TODO: refactor
-              />
-            ))}
-          </TabPanel>
-
-          <TabPanel className={classes.tabPanel}>
-            {answers3.map(item => (
-              <Answer
-                answer={item}
-                key={item.id}
-                isShowPayment={isShowPayment}
-                handlerPaymentPopup={handlerPaymentPopup}
-                name="mavrody" //TODO: refactor
-              />
-            ))}
-          </TabPanel>
-
-          <TabPanel className={classes.tabPanel}>
-            {answers4.map(item => (
-              <Answer
-                answer={item}
-                key={item.id}
-                isShowPayment={isShowPayment}
-                handlerPaymentPopup={handlerPaymentPopup}
-                name="troubles" //TODO: refactor
-              />
-            ))}
-          </TabPanel>
-
-          <TabPanel className={classes.tabPanel}>
-            {answers5.map(item => (
-              <Answer
-                answer={item}
-                key={item.id}
-                isShowPayment={isShowPayment}
-                handlerPaymentPopup={handlerPaymentPopup}
-              />
-            ))}
-          </TabPanel>
+          {answers.map(item => (
+            <TabPanel className={classes.tabPanel} key={item.id}>
+              {item.answers.map(answerItem => (
+                <Answer
+                  answer={answerItem}
+                  key={answerItem.id}
+                  handlerPaymentPopup={handlerPaymentPopup}
+                  name={item.bundle}
+                />
+              ))}
+            </TabPanel>
+          ))}
         </Tabs>
       </div>
 
       {!isEmpty(popupData) && (
         <Payment
-          // choosedAnswer={choosedAnswer}
           match={match}
           handlerPaymentClose={handlerPaymentClose}
           choosedAnswer={popupData}
@@ -165,20 +92,13 @@ const Dashboard = ({
 
 Dashboard.propTypes = {
   classes: PropTypes.object,
-  answers1: PropTypes.array,
-  answers2: PropTypes.array,
-  answers3: PropTypes.array,
-  answers4: PropTypes.array,
-  answers5: PropTypes.array,
-  choosedAnswer: PropTypes.object,
-  isShowPayment: PropTypes.bool,
+  answers: PropTypes.array,
   isAuth: PropTypes.bool,
   isOpenMenu: PropTypes.bool,
   handlerPaymentPopup: PropTypes.func,
   handlerPaymentClose: PropTypes.func,
   selectTab: PropTypes.func,
   selectedTabIndex: PropTypes.number,
-
   match: PropTypes.object
 }
 

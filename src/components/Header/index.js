@@ -11,6 +11,7 @@ const Header = ({
   classes,
   isAuth,
   isShow,
+  isTablet,
   handleCloseModal,
   handleLogout,
   checkAuthState
@@ -22,10 +23,13 @@ const Header = ({
           <span>Выйти</span>
         </div>
       )}
-      <UserBlock email={checkAuthState ? checkAuthState.email : ''} />
+      <UserBlock
+        isTablet={isTablet}
+        email={checkAuthState ? checkAuthState.email : ''}
+      />
     </header>
 
-    {isShow && <Authorization handleCloseModal={handleCloseModal} />}
+    {/* {isShow && <Authorization handleCloseModal={handleCloseModal} />} */}
   </React.Fragment>
 )
 
@@ -33,6 +37,7 @@ Header.propTypes = {
   classes: PropTypes.object,
   isShow: PropTypes.bool,
   isAuth: PropTypes.bool,
+  isTablet: PropTypes.bool,
   handleCloseModal: PropTypes.func,
   handleLogout: PropTypes.func,
   email: PropTypes.string
