@@ -60,7 +60,8 @@ export default compose(
       isRegistrationPressed,
       setErrorMessage,
       setRecaptchaError,
-      recaptcha
+      recaptcha,
+      history
     }) =>
       handleSubmit(variables => {
         if (isSignin) {
@@ -76,6 +77,14 @@ export default compose(
                   localStorage.setItem('token', res.token)
                   handleCloseModal()
                   dispatch(checkAuth())
+
+                  if (res.unfinished) {
+                    history.push(
+                      `/en/web/${res.unfinished.question_type}/${
+                        res.unfinished.bundle
+                      }/${res.unfinished.is_paid ? 'pay' : ''}`
+                    )
+                  }
                 } else {
                   if (res.code === 3982) {
                     setErrorMessage(
@@ -106,9 +115,7 @@ export default compose(
                   } else {
                     setRegistrationPressed(false)
                     if (res.code === 5059) {
-                      setErrorMessage(
-                        'Такой пользователь существует'
-                      )
+                      setErrorMessage('Такой пользователь существует')
                     }
                   }
                 })

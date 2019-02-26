@@ -5,31 +5,30 @@ import {
   CHECK_AUTH,
   LOGIN_USER,
   REGISTRATION_USER,
-  CONFIRM_REGISTRATION
+  CONFIRM_REGISTRATION,
+  LOGOUT
 } from './types'
 import gC from '../../constants'
 
 /* CHECK AUTH */
-export const checkAuth = () => {
-  return dispatch => {
-    const token = localStorage.getItem('token')
+export const checkAuth = () => dispatch => {
+  const token = localStorage.getItem('token')
 
-    return axios({
-      method: 'get',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        token: token ? token : ''
-      },
-      url: `${gC.API_URL}/req/checkauth`
+  return axios({
+    method: 'get',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      token: token ? token : ''
+    },
+    url: `${gC.API_URL}/req/checkauth`
+  })
+    .then(response => {
+      dispatch(createCheckAuthSuccess(response.data))
     })
-      .then(response => {
-        dispatch(createCheckAuthSuccess(response.data))
-      })
-      .catch(error => {
-        console.log('CHECK_AUTH error', error)
-      })
-  }
+    .catch(error => {
+      console.log('CHECK_AUTH error', error)
+    })
 }
 
 export const createCheckAuthSuccess = data => {
@@ -143,6 +142,35 @@ export const confirmRegistration = data => {
 export const createConfirmRegistrationSuccess = data => {
   return {
     type: CONFIRM_REGISTRATION,
+    payload: {
+      success: data.success
+    }
+  }
+}
+/* ********** */
+
+/* LOGOUT */
+export const logout = () => dispatch =>
+  axios({
+    method: 'get',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    url: `${gC.API_URL}/req/logout`
+  })
+    .then(response => {
+      dispatch(createLogoutSuccess(response.data))
+
+      return response.data
+    })
+    .catch(error => {
+      console.log('LOGOUT error', error)
+    })
+
+export const createLogoutSuccess = data => {
+  return {
+    type: LOGOUT,
     payload: {
       success: data.success
     }

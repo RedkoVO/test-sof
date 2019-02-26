@@ -1,4 +1,9 @@
-import { CHECK_AUTH, LOGIN_USER, REGISTRATION_USER } from '../actions/types'
+import {
+  CHECK_AUTH,
+  LOGIN_USER,
+  REGISTRATION_USER,
+  LOGOUT
+} from '../actions/types'
 
 const auth = (state = {}, action) => {
   const { payload, type } = action
@@ -36,6 +41,13 @@ const auth = (state = {}, action) => {
       return {
         ...state,
         registrationEmail: {
+          success: payload.success
+        }
+      }
+    case LOGOUT:
+      return {
+        ...state,
+        logout: {
           success: payload.success
         }
       }

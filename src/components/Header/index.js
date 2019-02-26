@@ -14,7 +14,8 @@ const Header = ({
   isTablet,
   handleCloseModal,
   handleLogout,
-  checkAuthState
+  checkAuthState,
+  history
 }) => (
   <React.Fragment>
     <header className={classes.root}>
@@ -29,7 +30,7 @@ const Header = ({
       />
     </header>
 
-    {isShow && <Authorization handleCloseModal={handleCloseModal} />}
+    {isShow && <Authorization history={history} handleCloseModal={handleCloseModal} />}
   </React.Fragment>
 )
 
@@ -39,8 +40,7 @@ Header.propTypes = {
   isAuth: PropTypes.bool,
   isTablet: PropTypes.bool,
   handleCloseModal: PropTypes.func,
-  handleLogout: PropTypes.func,
-  email: PropTypes.string
+  handleLogout: PropTypes.func
 }
 
 export default withStyles(styles)(Header)

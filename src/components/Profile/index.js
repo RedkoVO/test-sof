@@ -32,7 +32,7 @@ const Profile = ({ classes, products }) => (
       <TabPanel className={classes.tabPanel}>
         <Questions
           questions={
-            products && products.questions.future
+            products && products.questions && products.questions.future
               ? products.questions.future
               : []
           }
@@ -42,7 +42,7 @@ const Profile = ({ classes, products }) => (
       <TabPanel className={classes.tabPanel}>
         <Questions
           questions={
-            products && products.questions.immortality
+            products && products.questions && products.questions.immortality
               ? products.questions.immortality
               : []
           }
@@ -52,7 +52,7 @@ const Profile = ({ classes, products }) => (
       <TabPanel className={classes.tabPanel}>
         <Questions
           questions={
-            products && products.questions.mavrody
+            products && products.questions && products.questions.mavrody
               ? products.questions.mavrody
               : []
           }
@@ -62,7 +62,7 @@ const Profile = ({ classes, products }) => (
       <TabPanel className={classes.tabPanel}>
         <Questions
           questions={
-            products && products.questions.troubles
+            products && products.questions && products.questions.troubles
               ? products.questions.troubles
               : []
           }

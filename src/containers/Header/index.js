@@ -4,7 +4,7 @@ import { withState, withHandlers, lifecycle, pure } from 'recompose'
 
 import withDeviceTarget from '../../hocs/withDeviceTarget'
 
-import { checkAuth } from '../../redux/actions/auth'
+import { checkAuth, logout } from '../../redux/actions/auth'
 
 import Header from '../../components/Header/'
 
@@ -19,7 +19,16 @@ export default compose(
   withHandlers({
     handleLogout: ({ dispatch, history }) => () => {
       localStorage.removeItem('token')
-      dispatch(checkAuth())
+      dispatch(logout())
+        .then(res => {
+          if (res && res.success) {
+            dispatch(checkAuth())
+          }
+        })
+        .catch(err => {
+          console.log('Error logout:', err)
+        })
+
       history.push('/en/web/')
     },
 
