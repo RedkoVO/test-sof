@@ -7,7 +7,7 @@ import styles from './styles'
 const Footer = ({ classes }) => (
   <footer className={classes.root}>
     <div className={classes.socialIcons}>
-      <a href="https://www.facebook.com/SophiaIQ2025" target="_blank">
+      <a href="https://www.facebook.com/SophiaIQ2025" rel="noopener noreferrer" target="_blank">
         <svg width="48px" height="48px">
           <path
             style={{ fill: '#282828' }}
@@ -15,7 +15,7 @@ const Footer = ({ classes }) => (
           />
         </svg>
       </a>
-      <a href="https://twitter.com/iq_sophia" target="_blank">
+      <a href="https://twitter.com/iq_sophia" rel="noopener noreferrer" target="_blank">
         <svg width="48px" height="48px">
           <path
             style={{ fill: '#282828' }}
@@ -24,7 +24,7 @@ const Footer = ({ classes }) => (
         </svg>
       </a>
 
-      <a href="https://vk.com/public177905722" target="_blank">
+      <a href="https://vk.com/public177905722" rel="noopener noreferrer" target="_blank">
         <svg width="48px" height="48px">
           <path
             style={{ fill: '#282828' }}
@@ -55,7 +55,7 @@ const Footer = ({ classes }) => (
         />
       </svg> */}
 
-      <a href="https://t.me/sophiaiq" target="_blank">
+      <a href="https://t.me/sophiaiq" rel="noopener noreferrer" target="_blank">
         <svg width="48px" height="48px" viewBox="0 0 60 60">
           <path
             style={{ fill: '#282828' }}

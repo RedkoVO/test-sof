@@ -5,7 +5,7 @@ import { Field, Form } from 'redux-form'
 import withStyles from '@material-ui/core/styles/withStyles'
 import cn from 'classnames'
 
-import InputField from '../../../App/components/InputField'
+import InputField from '../../../App/components/Form/InputField'
 
 import styles from './styles'
 
