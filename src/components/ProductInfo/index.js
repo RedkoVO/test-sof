@@ -1,20 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
+import { Field, Form } from 'redux-form'
 import withStyles from '@material-ui/core/styles/withStyles'
 import cn from 'classnames'
 
+import TextArea from '../App/components/Form/TextArea'
 import Spinner from '../App/components/Spinner'
 
 import styles from './styles'
 
 const PropductInfo = ({
   classes,
-  index,
+  id,
   isSpinner,
   question,
   productInfo,
-  handlerShowProductInfo
+  isAskQuestion,
+  handlerShowProductInfo,
+  handleAskQuestion,
+  onSubmit
 }) => {
   const statusButton = status => {
     switch (status) {
@@ -33,20 +38,45 @@ const PropductInfo = ({
         {isSpinner && <Spinner />}
 
         <div className={classes.text}>
-          {index}. {question.question_text}
+          {id}. {question.question_text}
         </div>
 
-        {question.status !== 0 ? (
+        {isAskQuestion ? (
+          <Form className={classes.form} onSubmit={onSubmit}>
+            <Field
+              id={`question`}
+              name={`question`}
+              className={classes.field}
+              component={TextArea}
+              placeholder="Вопрос:"
+            />
+
+            <button type="submit" className={classes.submit}>
+              Отправить
+            </button>
+          </Form>
+        ) : (
+          <React.Fragment>
+            {question.status === 0 && (
+              <div
+                className={classes.ask}
+                onClick={() => {
+                  handleAskQuestion()
+                }}
+              >
+                {statusButton(question.status).text}
+              </div>
+            )}
+          </React.Fragment>
+        )}
+
+        {question.status !== 0 && (
           <div
             className={cn(classes.openFullQuestion, {
               active: !isEmpty(productInfo)
             })}
             onClick={() => handlerShowProductInfo(question.id)}
           />
-        ) : (
-          <div className={classes.ask}>
-            {statusButton(question.status).text}
-          </div>
         )}
       </div>
 
@@ -67,11 +97,14 @@ const PropductInfo = ({
 
 PropductInfo.propTypes = {
   classes: PropTypes.object,
-  index: PropTypes.number,
+  id: PropTypes.number,
   question: PropTypes.object,
   productInfo: PropTypes.object,
   isSpinner: PropTypes.bool,
-  handlerShowProductInfo: PropTypes.func
+  isAskQuestion: PropTypes.bool,
+  handlerShowProductInfo: PropTypes.func,
+  handleAskQuestion: PropTypes.func,
+  onSubmit: PropTypes.func
 }
 
 export default withStyles(styles)(PropductInfo)

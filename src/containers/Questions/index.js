@@ -1,7 +1,5 @@
 import compose from 'recompose/compose'
-import { connect } from 'react-redux'
-import { reduxForm } from 'redux-form'
-import { withHandlers, withProps, pure } from 'recompose'
+import { withProps, pure } from 'recompose'
 
 import Questions from '../../components/Questions'
 
@@ -23,19 +21,7 @@ const tmpQuestions = [
   }
 ]
 
-const FORM_NAME = 'Answer'
-
 export default compose(
-  connect(),
-  reduxForm({
-    form: FORM_NAME
-  }),
-  withHandlers({
-    onSubmit: ({ handleSubmit }) =>
-      handleSubmit(variables => {
-        console.log('variables', variables)
-      })
-  }),
   withProps(() => ({
     questions: tmpQuestions
   })),

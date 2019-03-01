@@ -47,6 +47,7 @@ export default theme => ({
     justifyContent: 'center',
     flexGrow: 1,
     width: '190px',
+    minHeight: '80px',
     padding: '8px',
     color: '#04b1ff',
     fontSize: '14px',

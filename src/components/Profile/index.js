@@ -22,12 +22,9 @@ const Profile = ({ classes, products }) => (
           София создает рецепт молодости и бессмертия
         </Tab>
         <Tab className={classes.tab}>София хакнула Мавроди</Tab>
-        <Tab className={classes.tab}>
+        {/* <Tab className={classes.tab}>
           Помоги Софии решить глобальные проблемы человечества
-        </Tab>
-        <Tab className={classes.tab}>
-          София создает рецепт молодости и бессмертия
-        </Tab>
+        </Tab> */}
       </TabList>
       <TabPanel className={classes.tabPanel}>
         <Questions
@@ -59,7 +56,7 @@ const Profile = ({ classes, products }) => (
         />
       </TabPanel>
 
-      <TabPanel className={classes.tabPanel}>
+      {/* <TabPanel className={classes.tabPanel}>
         <Questions
           questions={
             products && products.questions && products.questions.troubles
@@ -67,9 +64,8 @@ const Profile = ({ classes, products }) => (
               : []
           }
         />
-      </TabPanel>
+      </TabPanel> */}
 
-      <TabPanel className={classes.tabPanel}>55555555555</TabPanel>
     </Tabs>
 
     <div className={classes.spinner}>{!products && <Spinner />}</div>
