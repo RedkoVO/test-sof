@@ -25,6 +25,8 @@ export const checkAuth = () => dispatch => {
   })
     .then(response => {
       dispatch(createCheckAuthSuccess(response.data))
+
+      return response.data
     })
     .catch(error => {
       console.log('CHECK_AUTH error', error)

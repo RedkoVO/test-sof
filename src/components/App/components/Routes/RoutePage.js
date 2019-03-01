@@ -15,8 +15,16 @@ const mapStateToProps = state => {
 
 class RoutePage extends Component {
   componentWillMount() {
-    const { dispatch } = this.props
+    const { dispatch, history } = this.props
     dispatch(checkAuth())
+      .then(res => {
+        if (res.is_admin === 1) {
+          history.push('/en/web/questions')
+        }
+      })
+      .catch(err => {
+        console.log('Error checkouth', err)
+      })
   }
 
   render() {

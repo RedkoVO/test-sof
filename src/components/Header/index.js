@@ -30,7 +30,7 @@ const Header = ({
       />
     </header>
 
-    {/* {isShow && <Authorization history={history} handleCloseModal={handleCloseModal} />} */}
+    {isShow && <Authorization history={history} handleCloseModal={handleCloseModal} />}
   </React.Fragment>
 )
 
