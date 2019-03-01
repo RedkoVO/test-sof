@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { reduxForm, reset } from 'redux-form'
 import { withHandlers, pure } from 'recompose'
 
+import { postAnswer } from '../../../../redux/actions/questions'
+
 import QuestionTextForm from '../../../../components/Questions/components/QuestionTextForm'
 
 const FORM_NAME = 'Answer'
@@ -19,9 +21,20 @@ export default compose(
   withHandlers({
     onSubmit: ({ handleSubmit, dispatch, id }) =>
       handleSubmit(variables => {
-        console.log('variables', variables)
+        const data = {
+          answer_id: id,
+          answer_text: `${variables.answer}-${id}`
+        }
 
-        dispatch(reset(`${FORM_NAME}-${id}`))
+        dispatch(postAnswer(data))
+          .then(res => {
+            if (res.success) {
+              dispatch(reset(`${FORM_NAME}-${id}`))
+            }
+          })
+          .catch(err => {
+            console.log('Error askQuestion', err)
+          })
       })
   }),
   pure

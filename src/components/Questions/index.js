@@ -6,28 +6,31 @@ import QuestionTextForm from '../../containers/Questions/components/QuestionText
 
 import styles from './styles'
 
-const Questions = ({ classes, questions, onSubmit }) => (
+const Questions = ({ classes, questionsList }) => (
   <div className={classes.root}>
-    {questions.map(item => (
-      <div className={classes.wrQuestionInfo} key={item.id}>
-        <div className={classes.leftBlock}>
-          <div className={classes.id}>ID: {item.id}</div>
-          <div className={classes.question}>Вопрос: {item.question}</div>
-          <div className={classes.user}>Пользователь: {item.user}</div>
-          <div className={classes.date}>Дата: {item.date}</div>
-          <div className={classes.nature}>Характер: {item.nature}</div>
-        </div>
+    {questionsList &&
+      questionsList.answersList &&
+      questionsList.answersList.map(item => (
+        <div className={classes.wrQuestionInfo} key={item.id}>
+          <div className={classes.leftBlock}>
+            <div className={classes.id}>ID: {item.id}</div>
+            <div className={classes.question}>Вопрос: {item.question_text}</div>
+            <div className={classes.user}>
+              Пользователь: {item.user_details.email}
+            </div>
+            <div className={classes.date}>Дата: {item.create_dt}</div>
+            <div className={classes.nature}>Характер: {item.sub_part}</div>
+          </div>
 
-        <QuestionTextForm id={item.id} />
-      </div>
-    ))}
+          <QuestionTextForm id={item.id} />
+        </div>
+      ))}
   </div>
 )
 
 Questions.propTypes = {
   classes: PropTypes.object,
-  questions: PropTypes.array,
-  onSubmit: PropTypes.func
+  questions: PropTypes.array
 }
 
 export default withStyles(styles)(Questions)

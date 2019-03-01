@@ -16,6 +16,8 @@ export const getProducts = () => dispatch =>
   })
     .then(response => {
       dispatch(createCheckAuthSuccess(response.data))
+
+      return response.data
     })
     .catch(error => {
       console.log('GET_PRODUCTS error', error)
