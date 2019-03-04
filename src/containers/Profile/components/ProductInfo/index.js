@@ -12,12 +12,12 @@ import {
 
 import ProductInfo from '../../../../components/ProductInfo'
 
+const FORM_NAME = 'QuestionTextField'
+
 const mapStateToProps = (state, ownProps) => ({
   productInfo: state.profile.productInfo,
   form: `${FORM_NAME}-${ownProps.id}`
 })
-
-const FORM_NAME = 'QuestionTextField'
 
 export default compose(
   connect(mapStateToProps),

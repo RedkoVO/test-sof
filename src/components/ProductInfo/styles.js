@@ -72,6 +72,9 @@ export default () => ({
 
     '&:focus': {
       outline: 'none'
+    },
+    '&.input-error': {
+      border: '2px solid red'
     }
   },
   submit: {

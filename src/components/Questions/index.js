@@ -6,11 +6,32 @@ import QuestionTextForm from '../../containers/Questions/components/QuestionText
 
 import styles from './styles'
 
+// const tmpQuestions = [
+//   {
+//     id: 1,
+//     question: 'Сколько буду жить?',
+//     user: 'christina.muratkina@gmail.com',
+//     date: '21.12.12',
+//     nature: 'вспыльчивый',
+//     user_details: { email: 'test@test.test' }
+//   },
+//   {
+//     id: 2,
+//     question:
+//       'Какая скорость света с учетом расширения вселенной относительно наблюдателя на расстоянии 5.67 световых лет?',
+//     user: 'christina.muratkina@gmail.com',
+//     date: '21.12.12',
+//     nature: 'вспыльчивый',
+//     user_details: { email: 'test@test.test' }
+//   }
+// ]
+
 const Questions = ({ classes, questionsList }) => (
   <div className={classes.root}>
     {questionsList &&
       questionsList.answersList &&
       questionsList.answersList.map(item => (
+        // {tmpQuestions.map(item => (
         <div className={classes.wrQuestionInfo} key={item.id}>
           <div className={classes.leftBlock}>
             <div className={classes.id}>ID: {item.id}</div>

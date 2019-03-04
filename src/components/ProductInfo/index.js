@@ -10,6 +10,8 @@ import Spinner from '../App/components/Spinner'
 
 import styles from './styles'
 
+const required = value => (value ? undefined : 'Required')
+
 const PropductInfo = ({
   classes,
   id,
@@ -44,10 +46,13 @@ const PropductInfo = ({
         {isAskQuestion ? (
           <Form className={classes.form} onSubmit={onSubmit}>
             <Field
+              id={`question-${id}`}
+              name={`question-${id}`}
               id={`question`}
               name={`question`}
               className={classes.field}
               component={TextArea}
+              validate={[required]}
               placeholder="Вопрос:"
             />
 

@@ -6,6 +6,8 @@ import withStyles from '@material-ui/core/styles/withStyles'
 
 import styles from './styles'
 
+const required = value => (value ? undefined : 'Required')
+
 const QuestionTextForm = ({ classes, onSubmit, id }) => (
   <Form className={classes.root} onSubmit={onSubmit}>
     <Field
@@ -14,6 +16,7 @@ const QuestionTextForm = ({ classes, onSubmit, id }) => (
       className={classes.field}
       component={TextArea}
       placeholder="Ответ:"
+      validate={[required]}
     />
 
     <button type="submit" className={classes.submit}>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { reduxForm, reset } from 'redux-form'
 import { withHandlers, pure } from 'recompose'
 
-import { postAnswer } from '../../../../redux/actions/questions'
+import { postAnswer, getQuestions } from '../../../../redux/actions/questions'
 
 import QuestionTextForm from '../../../../components/Questions/components/QuestionTextForm'
 
@@ -30,6 +30,7 @@ export default compose(
           .then(res => {
             if (res.success) {
               dispatch(reset(`${FORM_NAME}-${id}`))
+              dispatch(getQuestions())
             }
           })
           .catch(err => {
