@@ -1,4 +1,4 @@
-export default () => ({
+export default theme => ({
   root: {
     display: 'flex',
     minHeight: 'inherit',
@@ -23,7 +23,11 @@ export default () => ({
     backgroundColor: 'rgb(243, 243, 243)',
     padding: '15px',
     borderRadius: '23px',
-    boxShadow: '0px 10px 20px 0px rgba(0,0,0,0.1)'
+    boxShadow: '0px 10px 20px 0px rgba(0,0,0,0.1)',
+
+    [theme.breakpoints.down('sm')]: {
+      width: '100%'
+    }
   },
   authOverlay: {
     position: 'fixed',

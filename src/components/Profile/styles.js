@@ -39,6 +39,9 @@ export default theme => ({
     [theme.breakpoints.down('md')]: {
       flexWrap: 'wrap',
       justifyContent: 'center'
+    },
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column'
     }
   },
   tab: {
@@ -67,7 +70,14 @@ export default theme => ({
     },
 
     [theme.breakpoints.down('md')]: {
-      margin: '5px'
+      margin: '5px',
+      border: 'none',
+      outline: '2px solid #04b1ff'
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '90%',
+      margin: '0 auto',
+      marginBottom: '10px'
     }
   },
   tabPanel: {

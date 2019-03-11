@@ -48,8 +48,6 @@ const PropductInfo = ({
             <Field
               id={`question-${id}`}
               name={`question-${id}`}
-              id={`question`}
-              name={`question`}
               className={classes.field}
               component={TextArea}
               validate={[required]}

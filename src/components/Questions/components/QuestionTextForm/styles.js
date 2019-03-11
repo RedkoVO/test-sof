@@ -1,8 +1,12 @@
-export default () => ({
+export default theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    width: '45%'
+    width: '45%',
+
+    [theme.breakpoints.down('sm')]: {
+      width: '100%'
+    }
   },
   field: {
     height: '100px',

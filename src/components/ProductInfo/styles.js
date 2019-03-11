@@ -1,7 +1,7 @@
 import OpenIcon from '../../assets/images/openQuestion.png'
 import CloseIcon from '../../assets/images/cancel.png'
 
-export default () => ({
+export default theme => ({
   root: {
     width: 'calc(100% - 1px)',
     marginTop: '10px',
@@ -11,6 +11,12 @@ export default () => ({
 
     '&.active': {
       backgroundColor: '#fff'
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      width: '90%',
+      margin: '0 auto',
+      marginBottom: '10px'
     }
   },
   wrShortInformation: {
