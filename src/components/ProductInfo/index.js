@@ -21,6 +21,7 @@ const PropductInfo = ({
   isAskQuestion,
   handlerShowProductInfo,
   handleAskQuestion,
+  handlerPaymentPopup,
   onSubmit
 }) => {
   const statusButton = status => {
@@ -73,13 +74,22 @@ const PropductInfo = ({
           </React.Fragment>
         )}
 
-        {question.status !== 0 && (
+        {question.status !== 0 && !!question.is_paid && (
           <div
             className={cn(classes.openFullQuestion, {
               active: !isEmpty(productInfo)
             })}
             onClick={() => handlerShowProductInfo(question.id)}
           />
+        )}
+
+        {!question.is_paid && (
+          <div
+            className={classes.ask}
+            onClick={() => handlerPaymentPopup(question)}
+          >
+            Оплатить
+          </div>
         )}
       </div>
 
@@ -106,6 +116,7 @@ PropductInfo.propTypes = {
   isSpinner: PropTypes.bool,
   isAskQuestion: PropTypes.bool,
   handlerShowProductInfo: PropTypes.func,
+  handlerPaymentPopup: PropTypes.func,
   handleAskQuestion: PropTypes.func,
   onSubmit: PropTypes.func
 }

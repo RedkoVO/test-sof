@@ -16,7 +16,9 @@ const auth = (state = {}, action) => {
           isAuth: payload.isAuth,
           success: payload.success,
           userId: payload.userId,
-          email: payload.email
+          email: payload.email,
+          balance: payload.balance,
+          userType: payload.userType
         }
       }
     case LOGIN_USER:

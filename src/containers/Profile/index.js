@@ -1,6 +1,6 @@
 import compose from 'recompose/compose'
 import { connect } from 'react-redux'
-import { pure, lifecycle } from 'recompose'
+import { withHandlers, withState, lifecycle, pure } from 'recompose'
 
 import withDeviceTarget from '../../hocs/withDeviceTarget'
 
@@ -15,6 +15,16 @@ const mapStateToProps = state => ({
 export default compose(
   connect(mapStateToProps),
   withDeviceTarget,
+  withState('paymentQuestionData', 'setPaymentQuestionData', {}),
+  withHandlers({
+    handlerPaymentPopup: ({ setPaymentQuestionData }) => question => {
+      setPaymentQuestionData(question)
+    },
+
+    handlerPaymentClose: ({ setPaymentQuestionData }) => () => {
+      setPaymentQuestionData({})
+    }
+  }),
   lifecycle({
     componentDidMount() {
       const { dispatch } = this.props

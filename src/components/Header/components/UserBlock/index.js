@@ -7,7 +7,7 @@ import Avatar from '../../../../assets/images/user.jpg'
 
 import styles from './styles'
 
-const UserBlock = ({ classes, email, isTablet }) => (
+const UserBlock = ({ classes, email, userType, isTablet }) => (
   <div className={classes.root}>
     <div className={classes.user}>
       <div className={classes.userBlock}>
@@ -21,14 +21,17 @@ const UserBlock = ({ classes, email, isTablet }) => (
           <img src={Avatar} alt="" />
         </div>
         <div className={classes.menu}>
-          <ul>
-            <li>
-              <Link to={'/en/web/'}>Главная</Link>
-            </li>
-            <li>
-              <Link to={'/en/web/profile'}>Личный кабинет</Link>
-            </li>
-          </ul>
+          {userType !== 'b' && (
+            <ul>
+              <li>
+                <Link to={'/en/web/'}>Главная</Link>
+              </li>
+
+              <li>
+                <Link to={'/en/web/profile'}>Личный кабинет</Link>
+              </li>
+            </ul>
+          )}
         </div>
       </div>
     </div>

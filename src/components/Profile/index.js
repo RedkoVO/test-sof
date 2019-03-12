@@ -8,7 +8,13 @@ import Spinner from '../App/components/Spinner'
 
 import styles from './styles'
 
-const Profile = ({ classes, products }) => (
+const Profile = ({
+  classes,
+  products,
+  handlerPaymentClose,
+  handlerPaymentPopup,
+  paymentQuestionData
+}) => (
   <div className={classes.root}>
     <div className={classes.title}>Мои вопросы</div>
     <Tabs
@@ -28,6 +34,9 @@ const Profile = ({ classes, products }) => (
       </TabList>
       <TabPanel className={classes.tabPanel}>
         <Questions
+          paymentQuestionData={paymentQuestionData}
+          handlerPaymentPopup={handlerPaymentPopup}
+          handlerPaymentClose={handlerPaymentClose}
           questions={
             products && products.questions && products.questions.future
               ? products.questions.future
@@ -38,6 +47,9 @@ const Profile = ({ classes, products }) => (
 
       <TabPanel className={classes.tabPanel}>
         <Questions
+          paymentQuestionData={paymentQuestionData}
+          handlerPaymentPopup={handlerPaymentPopup}
+          handlerPaymentClose={handlerPaymentClose}
           questions={
             products && products.questions && products.questions.immortality
               ? products.questions.immortality
@@ -48,6 +60,9 @@ const Profile = ({ classes, products }) => (
 
       <TabPanel className={classes.tabPanel}>
         <Questions
+          paymentQuestionData={paymentQuestionData}
+          handlerPaymentPopup={handlerPaymentPopup}
+          handlerPaymentClose={handlerPaymentClose}
           questions={
             products && products.questions && products.questions.mavrody
               ? products.questions.mavrody
@@ -58,6 +73,9 @@ const Profile = ({ classes, products }) => (
 
       {/* <TabPanel className={classes.tabPanel}>
         <Questions
+        paymentQuestionData={paymentQuestionData}
+        handlerPaymentPopup={handlerPaymentPopup}
+        handlerPaymentClose={handlerPaymentClose}
           questions={
             products && products.questions && products.questions.troubles
               ? products.questions.troubles
@@ -65,7 +83,6 @@ const Profile = ({ classes, products }) => (
           }
         />
       </TabPanel> */}
-
     </Tabs>
 
     <div className={classes.spinner}>{!products && <Spinner />}</div>
@@ -74,7 +91,10 @@ const Profile = ({ classes, products }) => (
 
 Profile.propTypes = {
   classes: PropTypes.object,
-  products: PropTypes.object
+  products: PropTypes.object,
+  paymentQuestionData: PropTypes.object,
+  handlerPaymentClose: PropTypes.func,
+  handlerPaymentPopup: PropTypes.func
 }
 
 export default withStyles(styles)(Profile)

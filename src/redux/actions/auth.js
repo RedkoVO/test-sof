@@ -40,7 +40,9 @@ export const createCheckAuthSuccess = data => {
       isAuth: data.isAuth,
       success: data.success,
       userId: data.user_id,
-      email: data.email
+      email: data.email,
+      balance: data.balance,
+      userType: data.user_type
     }
   }
 }

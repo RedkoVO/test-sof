@@ -26,6 +26,7 @@ const Header = ({
       )}
       <UserBlock
         isTablet={isTablet}
+        userType={checkAuthState ? checkAuthState.userType : ''}
         email={checkAuthState ? checkAuthState.email : ''}
       />
     </header>

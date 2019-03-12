@@ -20,7 +20,6 @@ const Dashboard = ({
   selectTab,
   selectedTabIndex,
   isOpenMenu,
-  isAuth,
   match
 }) => {
   const popupDataType = find(answers, { bundle: match.params.type })
@@ -93,7 +92,6 @@ const Dashboard = ({
 Dashboard.propTypes = {
   classes: PropTypes.object,
   answers: PropTypes.array,
-  isAuth: PropTypes.bool,
   isOpenMenu: PropTypes.bool,
   handlerPaymentPopup: PropTypes.func,
   handlerPaymentClose: PropTypes.func,

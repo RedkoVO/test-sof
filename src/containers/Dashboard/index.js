@@ -1,9 +1,14 @@
 import compose from 'recompose/compose'
-import { withProps, pure, withHandlers, withState } from 'recompose'
+import { withProps, lifecycle, withHandlers, withState, pure } from 'recompose'
+import { connect } from 'react-redux'
 
 import withDeviceTarget from '../../hocs/withDeviceTarget'
 
 import Dashboard from '../../components/Dashboard'
+
+const mapStateToProps = state => ({
+  checkAuthState: state.auth.checkAuth
+})
 
 const tmpAnswers = [
   {
@@ -96,7 +101,7 @@ const tmpAnswers = [
               'Ты можешь задавать вопросы когда угодно. Я всегда на связи и отвечу на каждый из твоих вопросов в течении часа.'
           }
         ]
-      },
+      }
       // {
       //   id: 4,
       //   title: 'Сонник от Софии',
@@ -264,7 +269,7 @@ const tmpAnswers = [
         ]
       }
     ]
-  },
+  }
   // {
   //   id: 4,
   //   bundle: 'troubles',
@@ -463,6 +468,7 @@ const tmpAnswers = [
 
 export default compose(
   withDeviceTarget,
+  connect(mapStateToProps),
   withState('selectedTabIndex', 'setTabIndex', 0),
   withState('isOpenMenu', 'setOpenMenu', false),
   withHandlers({
@@ -477,6 +483,17 @@ export default compose(
 
     handlerPaymentClose: ({ history }) => () => {
       history.push(`/en/web/`)
+    }
+  }),
+  lifecycle({
+    componentDidUpdate(prevProps) {
+      const { checkAuthState, history } = this.props
+
+      if (prevProps.checkAuthState !== checkAuthState) {
+        if (checkAuthState && checkAuthState.userType === 'b') {
+          history.push('/en/web/profile')
+        }
+      }
     }
   }),
   withProps(() => ({
