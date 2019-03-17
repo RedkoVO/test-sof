@@ -486,6 +486,13 @@ export default compose(
     }
   }),
   lifecycle({
+    componentDidMount() {
+      const { history, checkAuthState } = this.props
+
+      if (checkAuthState && checkAuthState.isAdmin === 1) {
+        history.push('/en/web/questions')
+      }
+    },
     componentDidUpdate(prevProps) {
       const { checkAuthState, history } = this.props
 

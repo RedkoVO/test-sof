@@ -38,6 +38,7 @@ export const createCheckAuthSuccess = data => {
     type: CHECK_AUTH,
     payload: {
       isAuth: data.isAuth,
+      isAdmin: data.is_admin,
       success: data.success,
       userId: data.user_id,
       email: data.email,

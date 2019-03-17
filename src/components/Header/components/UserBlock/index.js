@@ -26,9 +26,14 @@ const UserBlock = ({ classes, email, userType, isTablet }) => (
               <li>
                 <Link to={'/en/web/'}>Главная</Link>
               </li>
-
               <li>
                 <Link to={'/en/web/profile'}>Личный кабинет</Link>
+              </li>
+              <li>
+                <Link to={'/en/web/invest'}>Инвестировать</Link>
+              </li>
+              <li>
+                <Link to={'/en/web/invest-right'}>Правила инвестирования</Link>
               </li>
             </ul>
           )}

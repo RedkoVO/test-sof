@@ -14,6 +14,7 @@ const auth = (state = {}, action) => {
         ...state,
         checkAuth: {
           isAuth: payload.isAuth,
+          isAdmin: payload.isAdmin,
           success: payload.success,
           userId: payload.userId,
           email: payload.email,
